@@ -9,25 +9,21 @@
   </head>
   <body>
 
-  <style>
-  body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: blue; /* Ubah warna latar belakang sesuai kebutuhan */
-  }
-  
-  .donasi {
-    font-size: 4em; /* Ukuran font besar */
-    color: white; /* Warna teks putih agar kontras dengan latar belakang */
-  }
-</style>
-</head>
-<body>
-  <div class="donasi">Donasi awkoakwoaw</div>
+  <header class="bg-gray-800 text-white">
+    <div class="container mx-auto flex justify-between items-center py-4 px-8">
+        <h1 class="text-xl font-bold">Donasi</h1>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="#" class="hover:text-gray-300">Home</a></li>
+                <li><a href="#" class="hover:text-gray-300">About</a></li>
+                <li><a href="login.php" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Login</a></li>
+                <li><a href="register.php" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Register</a></li>
+            </ul>
+            </ul>
+        </nav>
+    </div>
+</header>
+
 
   </body>
 </html>
