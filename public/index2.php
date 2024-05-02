@@ -25,10 +25,6 @@
   </div>
 </div>
 
-
-
-
-
 <style>
   .glow {
     top: -10%;
@@ -129,8 +125,6 @@
     }
   }
 </style>
-
-
 
 
   </body>
