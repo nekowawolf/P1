@@ -3,149 +3,210 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Donasi</title>
+    <title>Web3donate</title>
     <link rel="shortcut icon" href="/public/img/logo.jpg" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
 
   
-  <div class="flex flex-col">
-  <div class="relative p-12 w-full sm:max-w-2xl sm:mx-auto">
-    <div class="overflow-hidden z-0 rounded-full relative p-1">
-      <form role="form" class="relative flex z-50 bg-white rounded-full">
-        <input type="text" placeholder="enter your search here" class="rounded-full flex-1 px-6 py-4 text-gray-700 focus:outline-none">
-        <button class="bg-indigo-500 text-white rounded-full font-semibold px-4 py-2 hover:bg-indigo-400 focus:bg-indigo-600 focus:outline-none">Search</button>
-      </form>
-      <div class="glow glow-1 z-10 bg-pink-400 absolute"></div>
-      <div class="glow glow-2 z-20 bg-purple-400 absolute"></div>
-      <div class="glow glow-3 z-30 bg-yellow-400 absolute"></div>
-      <div class="glow glow-4 z-40 bg-blue-400 absolute"></div>
-    </div>
-  </div>
-</div>
+    <body class="bg-blue-500">
+      <nav
+        class="relative px-4 py-4 flex justify-between items-center bg-white"
+      >
+        <a class="text-3xl font-bold leading-none" href="#">
+          <a class="mr-auto text-3xl font-bold leading-none" href="index.html">
+            <img
+              src="img/logo.png"
+              alt=""
+              class="w-14 h-14"
+            />
+          </a>
+        </a>
+        <div class="lg:hidden">
+          <button class="navbar-burger flex items-center text-blue-600 p-3">
+            <svg
+              class="block h-4 w-4 fill-current"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <title>Mobile menu</title>
+              <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+            </svg>
+          </button>
+        </div>
+        <ul
+          class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6"
+        >
+          <li>
+            <a class="text-sm text-gray-400 hover:text-gray-500" href="#donate"
+              >Donate</a
+            >
+          </li>
+          <li class="text-gray-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              class="w-4 h-4 current-fill"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+              />
+            </svg>
+          </li>
+          <li>
+            <a class="text-sm text-gray-400 hover:text-gray-500" href="https://app.uniswap.org/swap" target="_blank"
+              >Swap</a
+            >
+          </li>
+          <li class="text-gray-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="currentColor"
+              class="w-4 h-4 current-fill"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+              />
+            </svg>
+          </li>
 
-<style>
-  .glow {
-    top: -10%;
-    left: -10%;
-    width: 120%;
-    height: 120%;
-    border-radius: 100%;
-  }
+          <li>
+            <a class="text-sm text-gray-400 hover:text-gray-500" href="feedback.html"
+              >Feedback</a
+            >
+          </li>
+        </ul>
+        <a
+          class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200"
+          href="home.html"
+          >Logout</a
+        >
+      </nav>
+      <div class="navbar-menu relative z-50 hidden">
+        <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
+        <nav
+          class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto"
+        >
+          <div class="flex items-center mb-8">
+            <a class="mr-auto text-3xl font-bold leading-none" href="#">
+              <img
+                src="img/logo.png"
+                alt="deskripsi_gambar"
+                class="w-80 h-80"
+              />
+            </a>
+            <button class="navbar-close">
+              <svg
+                class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </div>
+          <div>
+            <ul>
+              <li class="mb-1">
+                <a
+                  class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
+                  href="#donate"
+                  >Donate</a
+                >
+              </li>
+              <li class="mb-1">
+                <a
+                  class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
+                  href="https://app.uniswap.org/swap" target="_blank"
+                  >Swap</a
+                >
+              </li>
+              <li class="mb-1">
+                <a
+                  class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
+                  href="feedback.html"
+                  >Feedback</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div class="mt-auto">
+            <div class="pt-6">
+              <a
+                class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700 rounded-xl"
+                href="home.html"
+                >Logout</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+    </body>
 
-  .glow-1 {
-    animation: glow1 4s linear infinite;
-  }
+    <script>
+      // Burger menus
+      document.addEventListener("DOMContentLoaded", function () {
+        // open
+        const burger = document.querySelectorAll(".navbar-burger");
+        const menu = document.querySelectorAll(".navbar-menu");
 
-  .glow-2 {
-    animation: glow2 4s linear infinite;
-    animation-delay: 100ms;
-  }
+        if (burger.length && menu.length) {
+          for (var i = 0; i < burger.length; i++) {
+            burger[i].addEventListener("click", function () {
+              for (var j = 0; j < menu.length; j++) {
+                menu[j].classList.toggle("hidden");
+              }
+            });
+          }
+        }
 
-  .glow-3 {
-    animation: glow3 4s linear infinite;
-    animation-delay: 200ms;
-  }
+        // close
+        const close = document.querySelectorAll(".navbar-close");
+        const backdrop = document.querySelectorAll(".navbar-backdrop");
 
-  .glow-4 {
-    animation: glow4 4s linear infinite;
-    animation-delay: 300ms;
-  }
+        if (close.length) {
+          for (var i = 0; i < close.length; i++) {
+            close[i].addEventListener("click", function () {
+              for (var j = 0; j < menu.length; j++) {
+                menu[j].classList.toggle("hidden");
+              }
+            });
+          }
+        }
 
-  @keyframes glow1 {
-    0% {
-      transform: translate(10%, 10%) scale(1);
-    }
-    25% {
-      transform: translate(-10%, 10%) scale(1);
-    }
-    50% {
-      transform: translate(-10%, -10%) scale(1);
-    }
-    75% {
-      transform: translate(10%, -10%) scale(1);
-    }
-    100% {
-      transform: translate(10%, 10%) scale(1);
-    }
-  }
-
-  @keyframes glow2 {
-    0% {
-      transform: translate(-10%, -10%) scale(1);
-    }
-    25% {
-      transform: translate(10%, -10%) scale(1);
-    }
-    50% {
-      transform: translate(10%, 10%) scale(1);
-    }
-    75% {
-      transform: translate(-10%, 10%) scale(1);
-    }
-    100% {
-      transform: translate(-10%, -10%) scale(1);
-    }
-  }
-
-  @keyframes glow3 {
-    0% {
-      transform: translate(-10%, 10%) scale(1);
-    }
-    25% {
-      transform: translate(-10%, -10%) scale(1);
-    }
-    50% {
-      transform: translate(10%, -10%) scale(1);
-    }
-    75% {
-      transform: translate(10%, 10%) scale(1);
-    }
-    100% {
-      transform: translate(-10%, 10%) scale(1);
-    }
-  }
-
-  @keyframes glow4 {
-    0% {
-      transform: translate(10%, -10%) scale(1);
-    }
-    25% {
-      transform: translate(10%, 10%) scale(1);
-    }
-    50% {
-      transform: translate(-10%, 10%) scale(1);
-    }
-    75% {
-      transform: translate(-10%, -10%) scale(1);
-    }
-    100% {
-      transform: translate(10%, -10%) scale(1);
-    }
-  }
-</style>
+        if (backdrop.length) {
+          for (var i = 0; i < backdrop.length; i++) {
+            backdrop[i].addEventListener("click", function () {
+              for (var j = 0; j < menu.length; j++) {
+                menu[j].classList.toggle("hidden");
+              }
+            });
+          }
+        }
+      });
+    </script>
 
 
 
 
-
-
-
-<div class="flex justify-center">
-  <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-          <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Bantu Korban Bencana di Indonesia</h5>
-      </a>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Letak geografis Indonesia berada di wilayah 'Ring Of Fire' sehingga menyebabkan negeri kita ini sering dilanda oleh bencana alam seperti Gempa Bumi</p>
-      <a href="donasi1.html" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          Donasi Sekarang
-          <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-          </svg>
-      </a>
-  </div>
-</div>
 
 
 

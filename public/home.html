@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Donasi</title>
+    <title>Web3donate</title>
     <link rel="shortcut icon" href="/public/img/logo.jpg" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -15,11 +15,7 @@
       >
         <a class="text-3xl font-bold leading-none" href="#">
           <a class="mr-auto text-3xl font-bold leading-none" href="home.html">
-            <img
-              src="/public/img/logo.png"
-              alt=""
-              class="w-14 h-14"
-            />
+            <img src="img/logo.png" alt="" class="w-14 h-14" />
           </a>
         </a>
         <div class="lg:hidden">
@@ -88,12 +84,12 @@
         </ul>
         <a
           class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-xl transition duration-200"
-          href="login.html"
+          href="signin.html"
           >Sign In</a
         >
         <a
           class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200"
-          href="register.html"
+          href="signup.html"
           >Sign up</a
         >
       </nav>
@@ -156,12 +152,12 @@
             <div class="pt-6">
               <a
                 class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"
-                href="register.html"
+                href="signin.html"
                 >Sign in</a
               >
               <a
                 class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700 rounded-xl"
-                href="login.html"
+                href="signup.html"
                 >Sign Up</a
               >
             </div>
@@ -224,7 +220,7 @@
           memiliki dampak yang besar dalam kehidupan orang lain
         </p>
         <a
-          href="login.html"
+          href="signin.html"
           class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block mt-16"
           >Donasi Sekarang</a
         >
@@ -246,78 +242,79 @@
             </p>
           </div>
           <div class="lg:w-2/6 mr-10 mt-10 lg:mt-0">
-            <img
-              src="img/logo.png"
-              alt="About Us"
-              class=" "
-            />
+            <img src="img/logo.png" alt="About Us" class=" " />
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="bg-white dark:bg-gray-900">
-      <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+    <section class="bg-white">
+      <div class="py-8 lg:py-16 mx-auto max-w-screen-xl px-4">
         <h2
-          class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white"
+          class="mb-8 lg:mb-16 text-3xl font-extrabold tracking-tight leading-tight text-center text-gray-900 md:text-4xl"
         >
-         Feedback
+          SUPPORTS 10+ CRYPTOCURRENCIES FOR DONATION
         </h2>
-        <p
-          class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl"
+        <div
+          class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400"
         >
-          Got a technical issue? Want to send feedback about a beta feature?
-          Need details about our Business plan? Let us know.
-        </p>
-        <form action="#" class="space-y-8">
-          <div>
-            <label
-              for="email"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >Your email</label
-            >
-            <input
-              type="email"
-              id="email"
-              class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder="donateme@gmail.com"
-              required
-            />
-          </div>
-          <div>
-            <label
-              for="subject"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >Subject</label
-            >
-            <input
-              type="text"
-              id="subject"
-              class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"
-              placeholder="Let us know how we can help you"
-              required
-            />
-          </div>
-          <div class="sm:col-span-2">
-            <label
-              for="message"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
-              >Your message</label
-            >
-            <textarea
-              id="message"
-              rows="6"
-              class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              placeholder="Leave a comment..."
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-          >
-            Send message
-          </button>
-        </form>
+          <a href="https://www.binance.com/" target="_blank" class="flex justify-center items-center">
+            <img src="https://logowik.com/content/uploads/images/binance-smart-chain6387.jpg" alt=""> 
+              
+          </a>
+          <a href="https://polygon.technology/" target="_blank" class="flex justify-center items-center">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Polygon_blockchain_logo.png" alt=""> 
+              
+          </a>
+          <a href="https://ethereum.org/id/" target="_blank" class="flex justify-center items-center">
+            <img src="https://logowik.com/content/uploads/images/ethereum-foundation6965.jpg" alt=""> 
+          </a>
+
+          <a href="https://solana.com/" target="_blank" class="flex justify-center items-center">
+            <img src="https://logowik.com/content/uploads/images/solana-sol9611.jpg" alt=""> 
+          </a>
+
+          <a href="https://dogecoin.com/" target="_blank" class="flex justify-center items-center">
+            <img src="https://logos-world.net/wp-content/uploads/2023/02/Dogecoin-Logo.png" alt=""> 
+          </a>
+
+          <a href="https://bitcoin.org/id/" target="_blank" class="flex justify-center items-center">
+            <img src="https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225080_1280.png" alt=""> 
+          </a>
+          
+        </div>
+
+        <div
+        class="grid grid-cols-2 gap-8 text-gray-500 sm:gap-12 md:grid-cols-3 lg:grid-cols-6 dark:text-gray-400"
+      >
+        <a href="https://www.binance.com/" target="_blank" class="flex justify-center items-center">
+          <img src="https://logowik.com/content/uploads/images/binance-smart-chain6387.jpg" alt=""> 
+            
+        </a>
+        <a href="https://polygon.technology/" target="_blank" class="flex justify-center items-center">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/Polygon_blockchain_logo.png" alt=""> 
+            
+        </a>
+        <a href="https://ethereum.org/id/" target="_blank" class="flex justify-center items-center">
+          <img src="https://logowik.com/content/uploads/images/ethereum-foundation6965.jpg" alt=""> 
+        </a>
+
+        <a href="https://solana.com/" target="_blank" class="flex justify-center items-center">
+          <img src="https://logowik.com/content/uploads/images/solana-sol9611.jpg" alt=""> 
+        </a>
+
+        <a href="https://dogecoin.com/" target="_blank" class="flex justify-center items-center">
+          <img src="https://logos-world.net/wp-content/uploads/2023/02/Dogecoin-Logo.png" alt=""> 
+        </a>
+
+        <a href="https://bitcoin.org/id/" target="_blank" class="flex justify-center items-center">
+          <img src="https://cdn.pixabay.com/photo/2013/12/08/12/12/bitcoin-225080_1280.png" alt=""> 
+        </a>
+        
+      </div>
+
+
+
       </div>
     </section>
   </body>
