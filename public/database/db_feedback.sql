@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2024 at 07:46 AM
+-- Generation Time: May 16, 2024 at 01:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,52 +18,50 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_user`
+-- Database: `db_feedback`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Table structure for table `feedback`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `feedback` (
   `id` int(11) NOT NULL,
-  `username` varchar(50) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
+  `email` varchar(30) NOT NULL,
+  `subject` varchar(50) NOT NULL,
+  `message` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `feedback`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
-(2, 'hariz', 'marw@gmail.com', '321', '2024-05-11 09:00:41'),
-(13, 'rrwwrr', 'rrwwrr@gmail.com', '111', '2024-05-15 03:48:04');
+INSERT INTO `feedback` (`id`, `email`, `subject`, `message`, `created_at`) VALUES
+(1, 'rrwwrr@gmail.com', 'bullrun', 'buy more btc ', '2024-05-16 09:28:49'),
+(19, 'vitalik@gmail.com', 'plss alt season', 'here we go', '2024-05-16 11:46:25');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `users`
+-- Indexes for table `feedback`
 --
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `username` (`username`),
-  ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT for table `feedback`
 --
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
