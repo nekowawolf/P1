@@ -15,7 +15,7 @@ $result = mysqli_query($conn_admin, $query_sql); // Perbaiki variabel menjadi $c
 // Memeriksa apakah hasil query mengembalikan baris yang lebih dari 0
 if (mysqli_num_rows($result) > 0) {
     // Jika berhasil, redirect ke halaman dashboard
-    header("Location: tb_donate.html");
+    header("Location: tb_donate.php");
 } else {
     // Jika gagal, redirect ke halaman error
     header("Location: worngpsadmin.html");
