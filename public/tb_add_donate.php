@@ -24,15 +24,10 @@
         </div>
         <!-- Main Content -->
         <div class="flex-1 p-10">   
-            <h1 class="text-3xl font-bold mb-10">User</h1>
-            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
-                <thead class="text-xs text-black-700 uppercase bg-gray-50 border">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 border">Email</th>
-                        <th scope="col" class="px-6 py-3 border">Payment</th>
-                        <th scope="col" class="px-6 py-3 border">Tx</th>
-                        <th scope="col" class="px-6 py-3 border">Message</th>
-                        <th scope="col" class="px-6 py-3 border">Action</th>
-                    </tr>
-                </thead>
+            <h1 class="text-3xl font-bold mb-10">Add Donate</h1>
+            <!-- Content goes here -->
+          
+        </div>
+    </div>
+</body>
+</html>

@@ -16,6 +16,7 @@
         <h2 class="text-2xl font-semibold mb-4 text-center">Web3donate Dashboard</h2>
         <nav>
             <a href="tb_donate.php" class="block py-2.5 px-4 rounded hover:bg-blue-700">Donate</a>
+            <a href="tb_add_donate.php" class="block py-2.5 px-4 rounded hover:bg-blue-700">Add Donate</a>
             <a href="tb_user.php" class="block py-2.5 px-4 rounded hover:bg-blue-700">Users</a>
             <a href="tb_crypto.php" class="block py-2.5 px-4 rounded hover:bg-blue-700">Crypto</a>
             <a href="tb_feedback.php" class="block py-2.5 px-4 rounded hover:bg-blue-700">Feedback</a>
