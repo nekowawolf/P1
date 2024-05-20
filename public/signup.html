@@ -9,34 +9,39 @@
   </head>
   <body class="bg-gray-50 dark:bg-gray-900 flex justify-center items-center h-screen">
     <div class="container mx-auto">
-      <div class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 bg-white rounded-xl mx-auto shadow-lg overflow-hidden">
+      <div class="flex flex-col lg:flex-row w-10/12 lg:w-8/12 dark:bg-gray-800 dark:border-gray-700 rounded-xl mx-auto shadow-lg overflow-hidden">
         <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center" style="background-image: url('img/logo.png');">
         </div>
         <div class="w-full lg:w-1/2 py-16 px-12">
-          <h2  class="text-3xl mb-4">Sign Up</h2>
-          <p class="mb-4">
+          <h2 class="text-3xl font-bold mb-4 text-white ">Sign Up</h2>
+          <p class="mb-4 text-white">
             Create your account. It’s free and only take a minute
           </p>
           <form action="signup.php" method="post">
             <div class="mt-5">
-              <input type="text" name="username" placeholder="Username" class="border border-gray-400 py-1 px-2 w-full">
+                <input type="text" name="username" placeholder="Username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
             <div class="mt-5">
-              <input type="text" name="email" placeholder="Email" class="border border-gray-400 py-1 px-2 w-full">
+                <input type="email" name="email" placeholder="Email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
             <div class="mt-5">
-              <input type="password" name="password" placeholder="Password" class="border border-gray-400 py-1 px-2 w-full">
+                <input type="password" name="password" placeholder="Password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
             <a href="signin.html">
             <div class="mt-5">
-              <button class="w-full bg-blue-500 py-3 text-center text-white">Sign Up</button>
-            </a>
+                <button type="submit" class="w-full bg-blue-500 py-3 text-center text-white">Sign Up</button>
             </div>
-          </form>
-          </form>
+        </form>
+        
         </div>
       </div>
     </div>
-    <script type="module" src="/main.js"></script>
+    <script>
+      // Periksa parameter URL untuk pesan error
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('error')) {
+        alert('Email or Username already registered');
+      }
+    </script>
   </body>
 </html>

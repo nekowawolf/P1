@@ -28,7 +28,7 @@
         <!-- Content goes here -->
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
-                <thead class="text-xs text-black-700 uppercase bg-gray-50 border">
+                <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
                     <tr>
                         <th scope="col" class="px-6 py-3 border">Email</th>
                         <th scope="col" class="px-6 py-3 border">Subject</th>
@@ -50,7 +50,6 @@
                         <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
                         <td class="border px-4 py-2"><?php echo htmlspecialchars($row['created_at']); ?></td>
                         <td class="border px-4 py-2">
-                            <a class="text-blue-600 hover:text-blue-800" href="edit_feedback.php?id=<?php echo htmlspecialchars($row['id']); ?>">Edit</a>
                             <a class="text-blue-600 hover:text-blue-800" href="delete_feedback.php?id=<?php echo htmlspecialchars($row['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
                         </td>
                     </tr>
