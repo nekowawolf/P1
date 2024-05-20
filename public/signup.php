@@ -1,5 +1,5 @@
 <?php
-require 'koneksi.php';
+require 'koneksi_user.php';
 
 $username = $_POST["username"];
 $email = $_POST["email"];

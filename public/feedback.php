@@ -1,11 +1,26 @@
 <?php
+session_start(); // Memulai session
+
 // Menghubungkan ke database
 require 'koneksi_feedback.php';
 
+// Memeriksa apakah email sudah disimpan dalam session
+if (!isset($_SESSION['user_email'])) {
+    // Jika tidak ada email dalam session, redirect ke halaman login
+    header("Location: signin.html");
+    exit();
+}
+
+// Mengambil email dari session
+$email = $_SESSION['user_email'];
+
 // Mengambil data dari form
-$email = $_POST['email'];
 $subject = $_POST['subject'];
 $message = $_POST['message'];
+
+// Lakukan sanitasi input untuk mencegah SQL Injection
+$subject = mysqli_real_escape_string($conn_feedback, $subject);
+$message = mysqli_real_escape_string($conn_feedback, $message);
 
 // Menyusun query untuk menyimpan data ke tabel feedback
 $query_sql = "INSERT INTO feedback (email, subject, message) VALUES ('$email', '$subject', '$message')";
@@ -13,6 +28,7 @@ $query_sql = "INSERT INTO feedback (email, subject, message) VALUES ('$email', '
 // Menjalankan query
 if (mysqli_query($conn_feedback, $query_sql)) {
     header("Location: feedback.html");
+    exit();
 } else {
     echo "Error: " . $query_sql . "<br>" . mysqli_error($conn_feedback);
 }
