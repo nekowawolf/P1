@@ -16,7 +16,7 @@ $result = mysqli_query($conn, $query_sql);
 
 if (mysqli_num_rows($result) > 0) {
     $_SESSION['user_email'] = $email; // Menyimpan email ke dalam session
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 } else {
     header("Location: worngps.html");
