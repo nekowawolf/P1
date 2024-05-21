@@ -81,12 +81,12 @@
           <ul class="py-2 text-sm text-black-700 dark:text-black-200" aria-labelledby="avatarButton">
             <li>
               <a href="#"
-                class="block px-4 py-2  hover:bg-blue-500 ">Donation
+                class="block px-4 py-2  dark:hover:bg-blue-600 ">Donation
                 History</a>
             </li>
             <li>
-              <a href="h_feedback.php"
-                class="block px-4 py-2  hover:bg-blue-500 ">Feedback
+              <a href="#"
+                class="block px-4 py-2  dark:hover:bg-blue-600 ">Feedback
                 History</a>
             </li>
           </ul>
@@ -182,6 +182,53 @@
       }
     });
   </script>
+
+ 
+
+
+
+
+<div class="flex-1 p-10">
+        <h1 class="text-3xl font-bold mb-10 text-center">Feedback History</h1>
+        <!-- Content goes here -->
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
+                <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 border">Email</th>
+                        <th scope="col" class="px-6 py-3 border">Subject</th>
+                        <th scope="col" class="px-6 py-3 border">Message</th>
+                        <th scope="col" class="px-6 py-3 border">Date</th>
+                        <th scope="col" class="px-6 py-3 border">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    // Menghubungkan ke database dan mengambil data feedback
+                    require 'fetch_h_feedback.php';
+                    
+                    foreach ($feedback_data as $row):
+                    ?>
+                    <tr class="text-center border">
+                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['email']); ?></td>
+                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['subject']); ?></td>
+                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
+                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['created_at']); ?></td>
+                        <td class="border px-4 py-2">
+                            <a class="text-blue-600 hover:text-blue-800" href="edit_feedback.php?id=<?php echo htmlspecialchars($row['id']); ?>">Edit</a>
+                            <a class="text-blue-600 hover:text-blue-800" href="delete_h_feedback.php?id=<?php echo htmlspecialchars($row['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+
+
+
+
+
+
+
+
 </body>
 
 </html>
