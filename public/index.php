@@ -183,8 +183,28 @@
     });
   </script>
 
- 
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8 text-center">Donations</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <?php
+      // Menghubungkan ke database dan mengambil data donasi
+      require 'fetch_donate.php';
 
+      foreach ($donate_data as $donation):
+      ?>
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <img src="<?php echo htmlspecialchars($donation['image_url']); ?>" alt="" class="w-full h-48 object-cover">
+          <div class="p-4">
+            <h2 class="text-xl font-bold mb-2"><?php echo htmlspecialchars($donation['name']); ?></h2>
+            <p class="text-gray-700 mb-4"><?php echo htmlspecialchars($donation['description']); ?></p>
+            <p class="text-gray-500 text-sm">End Date: <?php echo htmlspecialchars($donation['end_date']); ?></p>
+          </div>
+        </div>
+      <?php endforeach; ?>
+    </div>
+  </div>
+
+  
 
 </body>
 
