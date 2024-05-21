@@ -197,8 +197,12 @@
           <div class="p-4">
             <h2 class="text-xl font-bold mb-2"><?php echo htmlspecialchars($donation['name']); ?></h2>
             <p class="text-gray-700 mb-4"><?php echo htmlspecialchars($donation['description']); ?></p>
-            <p class="text-gray-500 text-sm">End Date: <?php echo htmlspecialchars($donation['end_date']); ?></p>
+            <form action="add_payment_user.php" method="get">
+            <input type="hidden" name="donate_id" value="<?php echo htmlspecialchars($donation['id']); ?>">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Donate</button>
+          </form>
           </div>
+          <p class="text-gray-500 text-sm text-center mb-5">End Date: <?php echo htmlspecialchars($donation['end_date']); ?></p>
         </div>
       <?php endforeach; ?>
     </div>
@@ -207,5 +211,4 @@
   
 
 </body>
-
 </html>
