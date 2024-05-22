@@ -80,7 +80,7 @@
           </div>
           <ul class="py-2 text-sm text-black-700 dark:text-black-200" aria-labelledby="avatarButton">
             <li>
-              <a href="#"
+              <a href="h_donate.php"
                 class="block px-4 py-2  hover:bg-blue-500 ">Donation
                 History</a>
             </li>

@@ -189,46 +189,40 @@
 
 
 <div class="flex-1 p-10">
-        <h1 class="text-3xl font-bold mb-10 text-center">Feedback History</h1>
+        <h1 class="text-3xl font-bold mb-10 text-center">Donate History</h1>
         <!-- Content goes here -->
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
                 <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
                     <tr>
-                        <th scope="col" class="px-6 py-3 border">Email</th>
-                        <th scope="col" class="px-6 py-3 border">Subject</th>
-                        <th scope="col" class="px-6 py-3 border">Message</th>
-                        <th scope="col" class="px-6 py-3 border">Date</th>
-                        <th scope="col" class="px-6 py-3 border">Action</th>
+                            <th scope="col" class="px-6 py-3 border">Email</th>
+                            <th scope="col" class="px-6 py-3 border">Donation Name</th>
+                            <th scope="col" class="px-6 py-3 border">Payment</th>
+                            <th scope="col" class="px-6 py-3 border">Tx</th>
+                            <th scope="col" class="px-6 py-3 border">Message</th>
+                            <th scope="col" class="px-6 py-3 border">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    // Menghubungkan ke database dan mengambil data feedback
-                    require 'fetch_h_feedback.php';
-                    
-                    foreach ($feedback_data as $row):
-                    ?>
-                    <tr class="text-center border">
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['email']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['subject']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['created_at']); ?></td>
-                        <td class="border px-4 py-2">
-                            <a class="text-blue-600 hover:text-blue-800" href="edit_feedback.php?id=<?php echo htmlspecialchars($row['id']); ?>">Edit</a>
-                            <a class="text-blue-600 hover:text-blue-800" href="delete_h_feedback.php?id=<?php echo htmlspecialchars($row['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-
-
-
-
-
-
-
-
+                <?php
+                        // Menghubungkan ke database dan mengambil data pembayaran
+                        $payment_data = require 'fetch_payment.php';
+                        
+                        foreach ($payment_data as $row):
+                        ?>
+                        <tr class="text-center border">
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['user_email']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['donate_name']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['crypto_name']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['transaction_proof']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['STATUS']); ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                     </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
-
 </html>

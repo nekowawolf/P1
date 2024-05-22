@@ -1,3 +1,27 @@
+<?php
+require 'fetch_donate.php';
+require 'fetch_crypto.php';
+
+
+// Memeriksa apakah donate_id ada di query string
+if (!isset($_GET['donate_id'])) {
+    echo "Donation ID not specified.";
+    exit();
+}
+
+$donate_id = $_GET['donate_id'];
+$donation = null;
+foreach ($donate_data as $donate) {
+    if ($donate['id'] == $donate_id) {
+        $donation = $donate;
+        break;
+    }
+}
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,13 +104,13 @@
           </div>
           <ul class="py-2 text-sm text-black-700 dark:text-black-200" aria-labelledby="avatarButton">
             <li>
-              <a href="h_donate.php"
-                class="block px-4 py-2  dark:hover:bg-blue-600 ">Donation
+              <a href="#"
+                class="block px-4 py-2  hover:bg-blue-500 ">donate
                 History</a>
             </li>
             <li>
               <a href="h_feedback.php"
-                class="block px-4 py-2  dark:hover:bg-blue-600 ">Feedback
+                class="block px-4 py-2  hover:bg-blue-500 ">Feedback
                 History</a>
             </li>
           </ul>
@@ -183,52 +207,59 @@
     });
   </script>
 
- 
 
+<div class="max-w-md mx-auto">
+    <h1 class="text-3xl font-bold mb-4 text-center mt-10">Payment</h1>
+    <?php if ($donation): ?>
+    <div class="mb-6 p-4 bg-white shadow-md rounded">
+      <div class="flex justify-center mb-4">
+        <img src="<?php echo htmlspecialchars($donation['image_url']); ?>" alt="Donation Image" class="w-full h-64 object-cover rounded">
+      </div>
+      <h2 class="text-2xl font-bold mb-2 text-center"><?php echo htmlspecialchars($donation['name']); ?></h2>
+      <p class="text-gray-700 mb-4 text-center"><?php echo htmlspecialchars($donation['description']); ?></p>
+      
+      <form action="process_payment.php" method="post">
+        <input type="hidden" name="donate_id" value="<?php echo htmlspecialchars($donation['id']); ?>">
+        <input type="hidden" name="user_email" value="<?php echo htmlspecialchars($user_email); ?>">
+        
+        <div class="mb-4">
+          <label for="crypto" class="block text-gray-700 font-bold">Select Payment Method:</label>
+          <select id="crypto" name="crypto" class="mt-1 p-2 w-full border rounded" onchange="showAddress()" required>
+            <option value="">Select a crypto method</option>
+            <?php foreach ($crypto_data as $crypto): ?>
+            <option value="<?php echo htmlspecialchars($crypto['id']); ?>" data-address="<?php echo htmlspecialchars($crypto['address']); ?>"><?php echo htmlspecialchars($crypto['name']); ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        
+        <div id="crypto-address" class="mb-4 text-gray-700 font-bold"></div>
+        
+        <div class="mb-4">
+          <label for="tx" class="block text-gray-700 font-bold">Transaction Proof (TX):</label>
+          <input type="text" id="tx" name="tx" class="mt-1 p-2 w-full border rounded" required>
+        </div>
 
+        <div class="mb-4">
+          <label for="message" class="block text-gray-700 font-bold">Message:</label>
+          <textarea id="message" name="message" class="mt-1 p-2 w-full border rounded"></textarea>
+        </div>
+        
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Pay Now</button>
+      </form>
+    </div>
+    <?php else: ?>
+    <p class="text-center text-red-500">Donation not found.</p>
+    <?php endif; ?>
+  </div>
 
-
-<div class="flex-1 p-10">
-        <h1 class="text-3xl font-bold mb-10 text-center">Feedback History</h1>
-        <!-- Content goes here -->
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
-                <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 border">Email</th>
-                        <th scope="col" class="px-6 py-3 border">Subject</th>
-                        <th scope="col" class="px-6 py-3 border">Message</th>
-                        <th scope="col" class="px-6 py-3 border">Date</th>
-                        <th scope="col" class="px-6 py-3 border">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    // Menghubungkan ke database dan mengambil data feedback
-                    require 'fetch_h_feedback.php';
-                    
-                    foreach ($feedback_data as $row):
-                    ?>
-                    <tr class="text-center border">
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['email']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['subject']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['created_at']); ?></td>
-                        <td class="border px-4 py-2">
-                            <a class="text-blue-600 hover:text-blue-800" href="edit_feedback.php?id=<?php echo htmlspecialchars($row['id']); ?>">Edit</a>
-                            <a class="text-blue-600 hover:text-blue-800" href="delete_h_feedback.php?id=<?php echo htmlspecialchars($row['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
-
-
-
-
-
-
-
+  <script>
+    function showAddress() {
+        var cryptoSelect = document.getElementById('crypto');
+        var selectedCrypto = cryptoSelect.options[cryptoSelect.selectedIndex];
+        var address = selectedCrypto.getAttribute('data-address');
+        document.getElementById('crypto-address').innerText = 'Address: ' + address;
+    }
+  </script>
 
 </body>
-
 </html>
