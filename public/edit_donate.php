@@ -39,30 +39,36 @@ mysqli_close($conn_donate);
     <link rel="shortcut icon" href="img/logo.png" />
     <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body class="bg-gray-100 p-6">
     <div class="max-w-7xl mx-auto">
         <h1 class="text-3xl font-bold mb-6 text-center">Edit Donation</h1>
-        
+
         <!-- Form to edit donation -->
         <form action="" method="post" class="mb-6 p-6 bg-white shadow-md rounded">
             <div class="mb-4">
                 <label for="name" class="block text-gray-700 font-bold">Name:</label>
-                <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded" value="<?php echo htmlspecialchars($donation['name']); ?>" required>
+                <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded"
+                    value="<?php echo htmlspecialchars($donation['name']); ?>" required>
             </div>
             <div class="mb-4">
                 <label for="description" class="block text-gray-700 font-bold">Description:</label>
-                <textarea id="description" name="description" class="mt-1 p-2 w-full border rounded" required><?php echo htmlspecialchars($donation['description']); ?></textarea>
+                <textarea id="description" name="description" class="mt-1 p-2 w-full border rounded"
+                    required><?php echo htmlspecialchars($donation['description']); ?></textarea>
             </div>
             <div class="mb-4">
                 <label for="image_url" class="block text-gray-700 font-bold">Image URL:</label>
-                <input type="text" id="image_url" name="image_url" class="mt-1 p-2 w-full border rounded" value="<?php echo htmlspecialchars($donation['image_url']); ?>" required>
+                <input type="text" id="image_url" name="image_url" class="mt-1 p-2 w-full border rounded"
+                    value="<?php echo htmlspecialchars($donation['image_url']); ?>" required>
             </div>
             <div class="mb-4">
                 <label for="end_date" class="block text-gray-700 font-bold">End Date:</label>
-                <input type="date" id="end_date" name="end_date" class="mt-1 p-2 w-full border rounded" value="<?php echo htmlspecialchars($donation['end_date']); ?>" required>
+                <input type="date" id="end_date" name="end_date" class="mt-1 p-2 w-full border rounded"
+                    value="<?php echo htmlspecialchars($donation['end_date']); ?>" required>
             </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update Donation</button>
         </form>
     </div>
 </body>
+
 </html>

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web3donate | Admin</title>
     <link rel="shortcut icon" href="img/logo.png" />
     <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="flex h-screen">
         <!-- Sidebar -->
@@ -23,43 +25,47 @@
             </nav>
         </div>
         <!-- Main Content -->
-        <div class="flex-1 p-10">   
+        <div class="flex-1 p-10">
             <h1 class="text-3xl font-bold mb-10">Donate</h1>
             <!-- Content goes here -->
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
-                <thead class=" text-center  text-xs text-black-700 uppercase bg-gray-50 border">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 border">Name</th>
-                        <th scope="col" class="px-6 py-3 border">Description</th>
-                        <th scope="col" class="px-6 py-3 border">Image</th>
-                        <th scope="col" class="px-6 py-3 border">End Date</th>
-                        <th scope="col" class="px-6 py-3 border">Action</th>
-                    </tr>
-                </thead>
+                <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
+                    <thead class=" text-center  text-xs text-black-700 uppercase bg-gray-50 border">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 border">Name</th>
+                            <th scope="col" class="px-6 py-3 border">Description</th>
+                            <th scope="col" class="px-6 py-3 border">Image</th>
+                            <th scope="col" class="px-6 py-3 border">End Date</th>
+                            <th scope="col" class="px-6 py-3 border">Action</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
-                    <?php
-                    // Menghubungkan ke database dan mengambil data feedback
-                    require 'fetch_donate.php';
-                    
-                    foreach ($donate_data as $row):
-                    ?>
-                    <tr class="text-center border">
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['name']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['description']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['image_url']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['end_date']); ?></td>
-                        <td class="border px-4 py-2">
-                        <a class="text-blue-600 hover:text-blue-800" href="edit_donate.php?id=<?php echo htmlspecialchars($row['id']); ?>">Edit</a>    
-                        <a class="text-blue-600 hover:text-blue-800" href="delete_donate.php?id=<?php echo htmlspecialchars($row['id']); ?>" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
-                        </td>
-                    </tr>
-                    <?php endforeach; ?>
-                </tbody>
+                    <tbody>
+                        <?php
+                        // Menghubungkan ke database dan mengambil data feedback
+                        require 'fetch_donate.php';
+
+                        foreach ($donate_data as $row):
+                            ?>
+                            <tr class="text-center border">
+                                <td class="border px-4 py-2"><?php echo htmlspecialchars($row['name']); ?></td>
+                                <td class="border px-4 py-2"><?php echo htmlspecialchars($row['description']); ?></td>
+                                <td class="border px-4 py-2"><?php echo htmlspecialchars($row['image_url']); ?></td>
+                                <td class="border px-4 py-2"><?php echo htmlspecialchars($row['end_date']); ?></td>
+                                <td class="border px-4 py-2">
+                                    <a class="text-blue-600 hover:text-blue-800"
+                                        href="edit_donate.php?id=<?php echo htmlspecialchars($row['id']); ?>">Edit</a>
+                                    <a class="text-blue-600 hover:text-blue-800"
+                                        href="delete_donate.php?id=<?php echo htmlspecialchars($row['id']); ?>"
+                                        onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
 
             </div>
         </div>
     </div>
 </body>
+
 </html>

@@ -5,17 +5,17 @@ require 'fetch_crypto.php';
 
 // Memeriksa apakah donate_id ada di query string
 if (!isset($_GET['donate_id'])) {
-    echo "Donation ID not specified.";
-    exit();
+  echo "Donation ID not specified.";
+  exit();
 }
 
 $donate_id = $_GET['donate_id'];
 $donation = null;
 foreach ($donate_data as $donate) {
-    if ($donate['id'] == $donate_id) {
-        $donation = $donate;
-        break;
-    }
+  if ($donate['id'] == $donate_id) {
+    $donation = $donate;
+    break;
+  }
 }
 
 
@@ -104,13 +104,11 @@ foreach ($donate_data as $donate) {
           </div>
           <ul class="py-2 text-sm text-black-700 dark:text-black-200" aria-labelledby="avatarButton">
             <li>
-              <a href="#"
-                class="block px-4 py-2  hover:bg-blue-500 ">donate
+              <a href="#" class="block px-4 py-2  hover:bg-blue-500 ">donate
                 History</a>
             </li>
             <li>
-              <a href="h_feedback.php"
-                class="block px-4 py-2  hover:bg-blue-500 ">Feedback
+              <a href="h_feedback.php" class="block px-4 py-2  hover:bg-blue-500 ">Feedback
                 History</a>
             </li>
           </ul>
@@ -208,58 +206,62 @@ foreach ($donate_data as $donate) {
   </script>
 
 
-<div class="max-w-md mx-auto">
+  <div class="max-w-md mx-auto">
     <h1 class="text-3xl font-bold mb-4 text-center mt-10">Payment</h1>
     <?php if ($donation): ?>
-    <div class="mb-6 p-4 bg-white shadow-md rounded">
-      <div class="flex justify-center mb-4">
-        <img src="<?php echo htmlspecialchars($donation['image_url']); ?>" alt="Donation Image" class="w-full h-64 object-cover rounded">
-      </div>
-      <h2 class="text-2xl font-bold mb-2 text-center"><?php echo htmlspecialchars($donation['name']); ?></h2>
-      <p class="text-gray-700 mb-4 text-center"><?php echo htmlspecialchars($donation['description']); ?></p>
-      
-      <form action="process_payment.php" method="post">
-        <input type="hidden" name="donate_id" value="<?php echo htmlspecialchars($donation['id']); ?>">
-        <input type="hidden" name="user_email" value="<?php echo htmlspecialchars($user_email); ?>">
-        
-        <div class="mb-4">
-          <label for="crypto" class="block text-gray-700 font-bold">Select Payment Method:</label>
-          <select id="crypto" name="crypto" class="mt-1 p-2 w-full border rounded" onchange="showAddress()" required>
-            <option value="">Select a crypto method</option>
-            <?php foreach ($crypto_data as $crypto): ?>
-            <option value="<?php echo htmlspecialchars($crypto['id']); ?>" data-address="<?php echo htmlspecialchars($crypto['address']); ?>"><?php echo htmlspecialchars($crypto['name']); ?></option>
-            <?php endforeach; ?>
-          </select>
+      <div class="mb-6 p-4 bg-white shadow-md rounded">
+        <div class="flex justify-center mb-4">
+          <img src="<?php echo htmlspecialchars($donation['image_url']); ?>" alt="Donation Image"
+            class="w-full h-64 object-cover rounded">
         </div>
-        
-        <div id="crypto-address" class="mb-4 text-gray-700 font-bold"></div>
-        
-        <div class="mb-4">
-          <label for="tx" class="block text-gray-700 font-bold">Transaction Proof (TX):</label>
-          <input type="text" id="tx" name="tx" class="mt-1 p-2 w-full border rounded" required>
-        </div>
+        <h2 class="text-2xl font-bold mb-2 text-center"><?php echo htmlspecialchars($donation['name']); ?></h2>
+        <p class="text-gray-700 mb-4 text-center"><?php echo htmlspecialchars($donation['description']); ?></p>
 
-        <div class="mb-4">
-          <label for="message" class="block text-gray-700 font-bold">Message:</label>
-          <textarea id="message" name="message" class="mt-1 p-2 w-full border rounded"></textarea>
-        </div>
-        
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Pay Now</button>
-      </form>
-    </div>
+        <form action="process_payment.php" method="post">
+          <input type="hidden" name="donate_id" value="<?php echo htmlspecialchars($donation['id']); ?>">
+          <input type="hidden" name="user_email" value="<?php echo htmlspecialchars($user_email); ?>">
+
+          <div class="mb-4">
+            <label for="crypto" class="block text-gray-700 font-bold">Select Payment Method:</label>
+            <select id="crypto" name="crypto" class="mt-1 p-2 w-full border rounded" onchange="showAddress()" required>
+              <option value="">Select a crypto method</option>
+              <?php foreach ($crypto_data as $crypto): ?>
+                <option value="<?php echo htmlspecialchars($crypto['id']); ?>"
+                  data-address="<?php echo htmlspecialchars($crypto['address']); ?>">
+                  <?php echo htmlspecialchars($crypto['name']); ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+
+          <div id="crypto-address" class="mb-4 text-gray-700 font-bold"></div>
+
+          <div class="mb-4">
+            <label for="tx" class="block text-gray-700 font-bold">Transaction Proof (TX):</label>
+            <input type="text" id="tx" name="tx" class="mt-1 p-2 w-full border rounded" required>
+          </div>
+
+          <div class="mb-4">
+            <label for="message" class="block text-gray-700 font-bold">Message:</label>
+            <textarea id="message" name="message" class="mt-1 p-2 w-full border rounded"></textarea>
+          </div>
+
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Pay Now</button>
+        </form>
+      </div>
     <?php else: ?>
-    <p class="text-center text-red-500">Donation not found.</p>
+      <p class="text-center text-red-500">Donation not found.</p>
     <?php endif; ?>
   </div>
 
   <script>
     function showAddress() {
-        var cryptoSelect = document.getElementById('crypto');
-        var selectedCrypto = cryptoSelect.options[cryptoSelect.selectedIndex];
-        var address = selectedCrypto.getAttribute('data-address');
-        document.getElementById('crypto-address').innerText = 'Address: ' + address;
+      var cryptoSelect = document.getElementById('crypto');
+      var selectedCrypto = cryptoSelect.options[cryptoSelect.selectedIndex];
+      var address = selectedCrypto.getAttribute('data-address');
+      document.getElementById('crypto-address').innerText = 'Address: ' + address;
     }
   </script>
 
 </body>
+
 </html>

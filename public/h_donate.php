@@ -80,13 +80,11 @@
           </div>
           <ul class="py-2 text-sm text-black-700 dark:text-black-200" aria-labelledby="avatarButton">
             <li>
-              <a href="h_donate.php"
-                class="block px-4 py-2  dark:hover:bg-blue-600 ">Donation
+              <a href="h_donate.php" class="block px-4 py-2  dark:hover:bg-blue-600 ">Donation
                 History</a>
             </li>
             <li>
-              <a href="h_feedback.php"
-                class="block px-4 py-2  dark:hover:bg-blue-600 ">Feedback
+              <a href="h_feedback.php" class="block px-4 py-2  dark:hover:bg-blue-600 ">Feedback
                 History</a>
             </li>
           </ul>
@@ -183,46 +181,47 @@
     });
   </script>
 
- 
 
 
 
 
-<div class="flex-1 p-10">
-        <h1 class="text-3xl font-bold mb-10 text-center">Donate History</h1>
-        <!-- Content goes here -->
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
-                <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
-                    <tr>
-                            <th scope="col" class="px-6 py-3 border">Email</th>
-                            <th scope="col" class="px-6 py-3 border">Donation Name</th>
-                            <th scope="col" class="px-6 py-3 border">Payment</th>
-                            <th scope="col" class="px-6 py-3 border">Tx</th>
-                            <th scope="col" class="px-6 py-3 border">Message</th>
-                            <th scope="col" class="px-6 py-3 border">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <?php
-                        // Menghubungkan ke database dan mengambil data pembayaran
-                        $payment_data = require 'fetch_payment.php';
-                        
-                        foreach ($payment_data as $row):
-                        ?>
-                        <tr class="text-center border">
-                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['user_email']); ?></td>
-                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['donate_name']); ?></td>
-                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['crypto_name']); ?></td>
-                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['transaction_proof']); ?></td>
-                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
-                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['STATUS']); ?></td>
-                        </tr>
-                        <?php endforeach; ?>
-                     </tbody>
-                </table>
-            </div>
-        </div>
+
+  <div class="flex-1 p-10">
+    <h1 class="text-3xl font-bold mb-10 text-center">Donate History</h1>
+    <!-- Content goes here -->
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
+        <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
+          <tr>
+            <th scope="col" class="px-6 py-3 border">Email</th>
+            <th scope="col" class="px-6 py-3 border">Donation Name</th>
+            <th scope="col" class="px-6 py-3 border">Payment</th>
+            <th scope="col" class="px-6 py-3 border">Tx</th>
+            <th scope="col" class="px-6 py-3 border">Message</th>
+            <th scope="col" class="px-6 py-3 border">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          // Menghubungkan ke database dan mengambil data pembayaran
+          $payment_data = require 'fetch_h_payment.php';
+
+          foreach ($payment_data as $row):
+            ?>
+            <tr class="text-center border">
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['user_email']); ?></td>
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['donate_name']); ?></td>
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['crypto_name']); ?></td>
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['transaction_proof']); ?></td>
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['STATUS']); ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
     </div>
+  </div>
+  </div>
 </body>
+
 </html>

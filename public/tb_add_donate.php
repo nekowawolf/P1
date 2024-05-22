@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web3donate | Admin</title>
     <link rel="shortcut icon" href="img/logo.png" />
     <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
+</head>
+
+<body>
 
     <div class="flex h-screen">
         <!-- Sidebar -->
@@ -23,37 +25,40 @@
             </nav>
         </div>
         <!-- Main Content -->
-        <div class="flex-1 p-10">   
+        <div class="flex-1 p-10">
             <h1 class="text-3xl font-bold mb-10">Add Donate</h1>
             <!-- Content goes here -->
 
-        
-        <!-- Form to add/edit donation -->
-        <form action="add_donate.php" method="post" enctype="multipart/form-data" class="mb-6 p-6 bg-white shadow-md rounded">
-            <input type="hidden" name="id" id="donation-id">
-            <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-bold">Name :</label>
-                <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded" required>
-            </div>
-            <div class="mb-4">
-                <label for="description" class="block text-gray-700 font-bold">Description :</label>
-                <textarea id="description" name="description" class="mt-1 p-2 w-full border rounded" required></textarea>
-            </div>
-            <div class="mb-4">
-                <label for="image_url" class="block text-gray-700 font-bold">Image URL :</label>
-                <input type="text" id="image_url" name="image_url" class="mt-1 p-2 w-full border rounded" required>
-            </div>
-            <div class="mb-4">
-                <label for="end_date" class="block text-gray-700 font-bold">End Date :</label>
-                <input type="date" id="end_date" name="end_date" class="mt-1 p-2 w-full border rounded" required>
-            </div>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Donation</button>
-        </form>
 
-       
+            <!-- Form to add/edit donation -->
+            <form action="add_donate.php" method="post" enctype="multipart/form-data"
+                class="mb-6 p-6 bg-white shadow-md rounded">
+                <input type="hidden" name="id" id="donation-id">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-bold">Name :</label>
+                    <input type="text" id="name" name="name" class="mt-1 p-2 w-full border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="description" class="block text-gray-700 font-bold">Description :</label>
+                    <textarea id="description" name="description" class="mt-1 p-2 w-full border rounded"
+                        required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label for="image_url" class="block text-gray-700 font-bold">Image URL :</label>
+                    <input type="text" id="image_url" name="image_url" class="mt-1 p-2 w-full border rounded" required>
+                </div>
+                <div class="mb-4">
+                    <label for="end_date" class="block text-gray-700 font-bold">End Date :</label>
+                    <input type="date" id="end_date" name="end_date" class="mt-1 p-2 w-full border rounded" required>
+                </div>
+                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Save Donation</button>
+            </form>
+
+
 
 
         </div>
     </div>
 </body>
+
 </html>

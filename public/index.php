@@ -80,13 +80,11 @@
           </div>
           <ul class="py-2 text-sm text-black-700 dark:text-black-200" aria-labelledby="avatarButton">
             <li>
-              <a href="h_donate.php"
-                class="block px-4 py-2  hover:bg-blue-500 ">Donation
+              <a href="h_donate.php" class="block px-4 py-2  hover:bg-blue-500 ">Donation
                 History</a>
             </li>
             <li>
-              <a href="h_feedback.php"
-                class="block px-4 py-2  hover:bg-blue-500 ">Feedback
+              <a href="h_feedback.php" class="block px-4 py-2  hover:bg-blue-500 ">Feedback
                 History</a>
             </li>
           </ul>
@@ -183,7 +181,7 @@
     });
   </script>
 
-<div class="container mx-auto px-4 py-8">
+  <div class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-8 text-center">Donations</h1>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <?php
@@ -191,24 +189,27 @@
       require 'fetch_donate.php';
 
       foreach ($donate_data as $donation):
-      ?>
+        ?>
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
           <img src="<?php echo htmlspecialchars($donation['image_url']); ?>" alt="" class="w-full h-48 object-cover">
           <div class="p-4">
             <h2 class="text-xl font-bold mb-2"><?php echo htmlspecialchars($donation['name']); ?></h2>
             <p class="text-gray-700 mb-4"><?php echo htmlspecialchars($donation['description']); ?></p>
             <form action="add_payment_user.php" method="get">
-            <input type="hidden" name="donate_id" value="<?php echo htmlspecialchars($donation['id']); ?>">
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Donate</button>
-          </form>
+              <input type="hidden" name="donate_id" value="<?php echo htmlspecialchars($donation['id']); ?>">
+              <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Donate</button>
+            </form>
           </div>
-          <p class="text-gray-500 text-sm text-center mb-5">End Date: <?php echo htmlspecialchars($donation['end_date']); ?></p>
+          <p class="text-gray-500 text-sm text-center mb-5">End Date:
+            <?php echo htmlspecialchars($donation['end_date']); ?>
+          </p>
         </div>
       <?php endforeach; ?>
     </div>
   </div>
 
-  
+
 
 </body>
+
 </html>
