@@ -104,7 +104,7 @@ foreach ($donate_data as $donate) {
           </div>
           <ul class="py-2 text-sm text-black-700 dark:text-black-200" aria-labelledby="avatarButton">
             <li>
-              <a href="#" class="block px-4 py-2  hover:bg-blue-500 ">donate
+              <a href="h_donate.php" class="block px-4 py-2  hover:bg-blue-500 ">Donate
                 History</a>
             </li>
             <li>
