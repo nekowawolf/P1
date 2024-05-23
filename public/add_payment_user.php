@@ -32,6 +32,13 @@ foreach ($donate_data as $donate) {
   <link rel="shortcut icon" href="img/logo.png" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+  <style>
+    .w-47ch {
+      max-width: calc(1ch * 47);
+      /* Set the maximum width to 47 characters */
+    }
+  </style>
 </head>
 
 <body>
@@ -228,12 +235,13 @@ foreach ($donate_data as $donate) {
               <?php foreach ($crypto_data as $crypto): ?>
                 <option value="<?php echo htmlspecialchars($crypto['id']); ?>"
                   data-address="<?php echo htmlspecialchars($crypto['address']); ?>">
-                  <?php echo htmlspecialchars($crypto['name']); ?></option>
+                  <?php echo htmlspecialchars($crypto['name']); ?>
+                </option>
               <?php endforeach; ?>
             </select>
           </div>
 
-          <div id="crypto-address" class="mb-4 text-gray-700 font-bold"></div>
+          <div id="crypto-address" class="w-47ch mb-4 text-gray-700 font-bold break-words"></div>
 
           <div class="mb-4">
             <label for="tx" class="block text-gray-700 font-bold">Transaction Proof (TX):</label>
