@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->execute()) {
             echo "Payment successfully recorded.";
             // Redirect ke halaman riwayat donasi atau halaman lain yang diinginkan
-            header("Location: index.php");
+            header("Location: payment_waiting.php");
             exit();
         } else {
             echo "Error: " . $stmt->error;
