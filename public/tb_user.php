@@ -45,6 +45,7 @@
                         $payment_data = require 'fetch_payment.php';
 
                         foreach ($payment_data as $row):
+                            $form_id = "paymentForm" . htmlspecialchars($row['id']);
                             ?>
                             <tr class="text-center border">
                                 <td class="border px-4 py-2"><?php echo htmlspecialchars($row['user_email']); ?></td>
@@ -54,11 +55,11 @@
                                 <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
                                 <td class="border px-4 py-2">
                                     <div class="flex justify-between">
-                                        <form action="confirm_payment.php" method="post">
+                                        <form id="<?php echo $form_id; ?>" action="confirm_payment.php" method="post">
                                             <input type="hidden" name="payment_id"
                                                 value="<?php echo htmlspecialchars($row['id']); ?>">
-                                            <button type="submit"
-                                                class="bg-green-500 text-white px-4 py-2 rounded">Confirm</button>
+                                            <button type="button" class="bg-green-500 text-white px-4 py-2 rounded"
+                                                onclick="confirmSubmission('<?php echo $form_id; ?>')">Confirm</button>
                                         </form>
                                         <form action="delete_payment.php" method="post">
                                             <input type="hidden" name="payment_id"
@@ -75,6 +76,15 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function confirmSubmission(formId) {
+            var confirmation = confirm("Are you sure you want to confirm this?");
+            if (confirmation) {
+                document.getElementById(formId).submit();
+            }
+        }
+    </script>
 </body>
 
 </html>
