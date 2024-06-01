@@ -186,12 +186,12 @@
 
 
 
-  <div class="flex-1 p-10">
+<div class="flex-1 p-10">
     <h1 class="text-3xl font-bold mb-10 text-center">Donate History</h1>
     <!-- Content goes here -->
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-      <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
-        <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
+      <table class="w-full min-w-max text-sm text-left rtl:text-right text-black-500 border">
+        <thead class="text-center text-xs text-black-700 uppercase bg-gray-50 border">
           <tr>
             <th scope="col" class="px-6 py-3 border">Email</th>
             <th scope="col" class="px-6 py-3 border">Donation Name</th>
@@ -220,8 +220,8 @@
         </tbody>
       </table>
     </div>
-  </div>
-  </div>
+</div>
+
 </body>
 
 </html>
