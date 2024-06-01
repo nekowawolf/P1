@@ -19,7 +19,7 @@ if (mysqli_num_rows($result) > 0) {
     header("Location: index.php");
     exit();
 } else {
-    header("Location: worngps.html");
+    header("Location: wrongps.html");
     exit();
 }
 ?>

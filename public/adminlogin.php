@@ -18,6 +18,6 @@ if (mysqli_num_rows($result) > 0) {
     header("Location: tb_donate.php");
 } else {
     // Jika gagal, redirect ke halaman error
-    header("Location: worngpsadmin.html");
+    header("Location: wrongpsadmin.html");
     exit(); // Hentikan eksekusi script
 }
