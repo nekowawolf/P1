@@ -195,6 +195,7 @@
           <tr>
             <th scope="col" class="px-6 py-3 border">Email</th>
             <th scope="col" class="px-6 py-3 border">Donation Name</th>
+            <th scope="col" class="px-6 py-3 border">Amount</th>
             <th scope="col" class="px-6 py-3 border">Payment</th>
             <th scope="col" class="px-6 py-3 border">Tx</th>
             <th scope="col" class="px-6 py-3 border">Message</th>
@@ -211,6 +212,7 @@
             <tr class="text-center border">
               <td class="border px-4 py-2"><?php echo htmlspecialchars($row['user_email']); ?></td>
               <td class="border px-4 py-2"><?php echo htmlspecialchars($row['donate_name']); ?></td>
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['Amount']); ?></td>
               <td class="border px-4 py-2"><?php echo htmlspecialchars($row['crypto_name']); ?></td>
               <td class="border px-4 py-2"><?php echo htmlspecialchars($row['transaction_proof']); ?></td>
               <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>

@@ -244,6 +244,13 @@ foreach ($donate_data as $donate) {
           <div id="crypto-address" class="w-47ch mb-4 text-gray-700 font-bold break-words"></div>
 
           <div class="mb-4">
+            <label for="amount" class="block text-gray-700 font-bold">Amount:</label>
+            <input type="number" id="amount" name="amount" class="mt-1 p-2 w-full border rounded" required min="0.00001"
+              step="0.00001">
+          </div>
+
+
+          <div class="mb-4">
             <label for="tx" class="block text-gray-700 font-bold">Transaction Proof (TX):</label>
             <input type="text" id="tx" name="tx" class="mt-1 p-2 w-full border rounded" required>
           </div>

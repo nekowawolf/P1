@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $crypto_id = isset($_POST['crypto']) ? $_POST['crypto'] : null;
     $transaction_proof = isset($_POST['tx']) ? $_POST['tx'] : null;
     $message = isset($_POST['message']) ? $_POST['message'] : '';
+    $amount = isset($_POST['amount']) ? $_POST['amount'] : null;
 
     // Mendapatkan nama donasi dan nama crypto dari ID
     $donate_name = '';
@@ -29,10 +30,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Validasi data
-    if ($donate_name && $user_email && $crypto_name && $transaction_proof) {
+    if ($donate_name && $user_email && $crypto_name && $transaction_proof && $amount) {
         // Mempersiapkan pernyataan SQL untuk menyimpan data pembayaran
-        $stmt = $conn_payment->prepare("INSERT INTO payments (donate_name, user_email, crypto_name, transaction_proof, message) VALUES (?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssss", $donate_name, $user_email, $crypto_name, $transaction_proof, $message);
+        $stmt = $conn_payment->prepare("INSERT INTO payments (donate_name, user_email, crypto_name, transaction_proof, message, amount) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssd", $donate_name, $user_email, $crypto_name, $transaction_proof, $message, $amount);
 
         // Mengeksekusi pernyataan dan memeriksa apakah data berhasil disimpan
         if ($stmt->execute()) {
