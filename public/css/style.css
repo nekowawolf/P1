@@ -814,12 +814,12 @@ video {
   height: 100vh;
 }
 
-.min-h-screen {
-  min-height: 100vh;
-}
-
 .min-h-full {
   min-height: 100%;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-10 {
@@ -1132,14 +1132,6 @@ video {
 
 .via-30\% {
   --tw-gradient-via-position: 30%;
-}
-
-.to-emerald-50 {
-  --tw-gradient-to: #ecfdf5 var(--tw-gradient-to-position);
-}
-
-.to-90\% {
-  --tw-gradient-to-position: 90%;
 }
 
 .bg-cover {
