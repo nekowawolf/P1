@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2024 at 01:48 PM
+-- Generation Time: Jun 06, 2024 at 04:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -41,7 +41,7 @@ CREATE TABLE `feedback` (
 
 INSERT INTO `feedback` (`id`, `email`, `subject`, `message`, `created_at`) VALUES
 (1, 'rrwwrr@gmail.com', 'bullrun', 'buy more btc ', '2024-05-16 09:28:49'),
-(19, 'vitalik@gmail.com', 'plss alt season', 'here we go', '2024-05-16 11:46:25');
+(44, 'vitalik@gmail.com', 'bug 1', 'bug 22', '2024-05-21 10:04:46');
 
 --
 -- Indexes for dumped tables
@@ -61,7 +61,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

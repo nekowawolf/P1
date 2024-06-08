@@ -1,16 +1,14 @@
 <?php
 $servername = "localhost";
-$database = "db_user";
+$database = "web3donate";
 $username = "root";
 $password = "";
 
-// Koneksi ke database
+// Connect to the database
 $conn = mysqli_connect($servername, $username, $password, $database);
 
-// Periksa koneksi
+// Check connection
 if (!$conn) {
-    die("Koneksi Gagal : " . mysqli_connect_error());
-} else {
-    echo "";
+    die("Connection failed: " . mysqli_connect_error());
 }
 ?>

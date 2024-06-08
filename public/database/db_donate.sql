@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2024 at 05:35 PM
+-- Generation Time: Jun 06, 2024 at 04:36 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,9 +40,11 @@ CREATE TABLE `donate` (
 --
 
 INSERT INTO `donate` (`id`, `name`, `description`, `image_url`, `end_date`) VALUES
-(1, 'test 1', 'wwwwwwwwwwwww', 'https://static.republika.co.id/uploads/images/inpicture_slide/karakter-dalam-anime-blue-lock-yoichi_221216162536-512.png', '2024-05-26'),
-(3, 'nnnnnn', '22', 'https://otoklix-production.s3.amazonaws.com/uploads/2023/08/harga-mobil-gtr.jpg', '2024-05-25'),
-(4, 'yourname', 'kimi no nawa ', 'https://akcdn.detik.net.id/visual/2020/07/07/anime-your-name-2_169.png?w=650&q=90', '2024-05-31');
+(1, 'All Eyes on Rafah ', 'with every donation, you help pave the way for humanity in rafah.', 'https://disk.mediaindonesia.com/thumbs/480x320/news/2024/05/36ef31b0b20954d4528eb650b3d29409.jpg', '2024-08-20'),
+(3, 'Help us evacuate Gaza to survive from the war!', 'your donation helps evacuate gaza from the war zone, together we can save lives.', 'https://images.gofundme.com/7WqslE_-wlFfWtAilcmQY_GKsVo=/720x405/https://d2g8igdw686xgo.cloudfront.net/79366043_1716193614118786_r.jpeg', '2024-09-26'),
+(4, 'Donation for W3D chain development', 'help us grow the W3D chain to create more decentralized and transparent donations. \r\n', 'https://i.pinimg.com/564x/dc/6c/60/dc6c60d38770a8d579bc80aeeab51546.jpg', '2024-12-01'),
+(5, 'Give voice to their silent cries', 'your donation helps people with hearing disabilities get the hearing aids they need to live better.', 'https://www.giving.sg/res/GetCampaignImage/54ec2ea7-6396-4fff-8eb2-ec4541551b2e.jpg', '2024-11-14'),
+(6, 'Food Aid for Stray Cats and Dogs', 'with your donation, we can provide food and love to cats and dogs living on the streets.', 'https://i.kym-cdn.com/entries/icons/original/000/048/010/side_eye_cat.jpg', '2024-07-12');
 
 --
 -- Indexes for dumped tables
@@ -62,7 +64,7 @@ ALTER TABLE `donate`
 -- AUTO_INCREMENT for table `donate`
 --
 ALTER TABLE `donate`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

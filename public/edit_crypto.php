@@ -1,6 +1,6 @@
 <?php
 // Menghubungkan ke database
-require 'koneksi_crypto.php';
+require 'koneksi_web3donate.php';
 
 $id = $_GET['id'] ?? null;
 if (!$id) {
@@ -8,24 +8,24 @@ if (!$id) {
 }
 
 $query_sql = "SELECT * FROM crypto WHERE id=$id";
-$result = mysqli_query($conn_crypto, $query_sql);
+$result = mysqli_query($conn, $query_sql);
 $row = mysqli_fetch_assoc($result);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nama = mysqli_real_escape_string($conn_crypto, $_POST['nama']);
-    $address = mysqli_real_escape_string($conn_crypto, $_POST['address']);
+    $nama = mysqli_real_escape_string($conn, $_POST['nama']);
+    $address = mysqli_real_escape_string($conn, $_POST['address']);
 
     $update_sql = "UPDATE crypto SET name='$nama', address='$address' WHERE id=$id";
 
-    if (mysqli_query($conn_crypto, $update_sql)) {
+    if (mysqli_query($conn, $update_sql)) {
         header("Location: tb_crypto.php");
         exit(); // tambahkan exit untuk menghentikan eksekusi skrip setelah mengarahkan ke halaman tb_crypto.php
     } else {
-        echo "Error updating record: " . mysqli_error($conn_crypto);
+        echo "Error updating record: " . mysqli_error($conn);
     }
 }
 
-mysqli_close($conn_crypto);
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>

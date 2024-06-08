@@ -1,10 +1,10 @@
 <?php
 // Menghubungkan ke database
-require 'koneksi_feedback.php';
+require 'koneksi_web3donate.php';
 
 $id = $_GET['id'];
 $query_sql = "SELECT * FROM feedback WHERE id=$id";
-$result = mysqli_query($conn_feedback, $query_sql);
+$result = mysqli_query($conn, $query_sql);
 $row = mysqli_fetch_assoc($result);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -14,15 +14,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $update_sql = "UPDATE feedback SET email='$email', subject='$subject', message='$message' WHERE id=$id";
 
-    if (mysqli_query($conn_feedback, $update_sql)) {
+    if (mysqli_query($conn, $update_sql)) {
         header("Location: h_feedback.php");
         exit(); // tambahkan exit untuk menghentikan eksekusi skrip setelah mengarahkan ke halaman tb_feedback.php
     } else {
-        echo "Error updating record: " . mysqli_error($conn_feedback);
+        echo "Error updating record: " . mysqli_error($conn);
     }
 }
 
-mysqli_close($conn_feedback);
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>

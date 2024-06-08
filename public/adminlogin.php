@@ -1,5 +1,5 @@
 <?php
-require 'koneksi_admin.php';
+require 'koneksi_web3donate.php';
 
 // Mendapatkan data dari form login
 $username = $_POST["username"];
@@ -10,7 +10,7 @@ $query_sql = "SELECT * FROM admin
             WHERE username = '$username' AND password = '$password'";
 
 // Menjalankan query SQL
-$result = mysqli_query($conn_admin, $query_sql); // Perbaiki variabel menjadi $conn_admin
+$result = mysqli_query($conn, $query_sql); // Perbaiki variabel menjadi $conn_admin
 
 // Memeriksa apakah hasil query mengembalikan baris yang lebih dari 0
 if (mysqli_num_rows($result) > 0) {

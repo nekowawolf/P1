@@ -1,10 +1,10 @@
 <?php
 // Menghubungkan ke database
-require 'koneksi_donate.php';
+require 'koneksi_web3donate.php';
 
 // Mengambil data dari database
 $query_sql = "SELECT * FROM donate";
-$result = mysqli_query($conn_donate, $query_sql);
+$result = mysqli_query($conn, $query_sql);
 
 // Menyimpan hasil dalam variabel untuk digunakan di file HTML
 $donate_data = [];
@@ -15,7 +15,7 @@ if ($result) {
 }
 
 // Menutup koneksi
-mysqli_close($conn_donate);
+mysqli_close($conn);
 
 // Mengembalikan data sebagai array
 return $donate_data;

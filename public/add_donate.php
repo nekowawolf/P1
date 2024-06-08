@@ -1,5 +1,5 @@
 <?php
-include 'koneksi_donate.php';
+include 'koneksi_web3donate.php';
 
 $id = $_POST['id'];
 $name = $_POST['name'];
@@ -15,11 +15,11 @@ if ($id) {
     $sql = "INSERT INTO donate (name, description, image_url, end_date) VALUES ('$name', '$description', '$image_url', '$end_date')";
 }
 
-if ($conn_donate->query($sql) === TRUE) {
+if ($conn->query($sql) === TRUE) {
     header("Location: tb_add_donate.php");
 } else {
-    echo "Error: " . $sql . "<br>" . $conn_donate->error;
+    echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
-$conn_donate->close();
+$conn->close();
 ?>

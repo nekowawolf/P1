@@ -1,12 +1,12 @@
 <?php
-include 'koneksi_donate.php';
+include 'koneksi_web3donate.php';
 
 // Mendapatkan ID dari parameter URL
 $id = $_GET['id'];
 
 // Mengambil data donasi berdasarkan ID
 $query_sql = "SELECT * FROM donate WHERE id = $id";
-$result = mysqli_query($conn_donate, $query_sql);
+$result = mysqli_query($conn, $query_sql);
 $donation = mysqli_fetch_assoc($result);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -18,15 +18,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Memperbarui data di database
     $update_sql = "UPDATE donate SET name = '$name', description = '$description', image_url = '$image_url', end_date = '$end_date' WHERE id = $id";
-    if (mysqli_query($conn_donate, $update_sql)) {
+    if (mysqli_query($conn, $update_sql)) {
         header("Location: tb_donate.php");
         exit();
     } else {
-        echo "Error updating record: " . mysqli_error($conn_donate);
+        echo "Error updating record: " . mysqli_error($conn);
     }
 }
 
-mysqli_close($conn_donate);
+mysqli_close($conn);
 ?>
 
 <!DOCTYPE html>

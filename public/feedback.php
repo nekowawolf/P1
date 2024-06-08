@@ -2,7 +2,7 @@
 session_start(); // Memulai session
 
 // Menghubungkan ke database
-require 'koneksi_feedback.php';
+require 'koneksi_web3donate.php';
 
 // Memeriksa apakah email sudah disimpan dalam session
 if (!isset($_SESSION['user_email'])) {
@@ -19,20 +19,20 @@ $subject = $_POST['subject'];
 $message = $_POST['message'];
 
 // Lakukan sanitasi input untuk mencegah SQL Injection
-$subject = mysqli_real_escape_string($conn_feedback, $subject);
-$message = mysqli_real_escape_string($conn_feedback, $message);
+$subject = mysqli_real_escape_string($conn, $subject);
+$message = mysqli_real_escape_string($conn, $message);
 
 // Menyusun query untuk menyimpan data ke tabel feedback
 $query_sql = "INSERT INTO feedback (email, subject, message) VALUES ('$email', '$subject', '$message')";
 
 // Menjalankan query
-if (mysqli_query($conn_feedback, $query_sql)) {
+if (mysqli_query($conn, $query_sql)) {
     header("Location: feedback.html");
     exit();
 } else {
-    echo "Error: " . $query_sql . "<br>" . mysqli_error($conn_feedback);
+    echo "Error: " . $query_sql . "<br>" . mysqli_error($conn);
 }
 
 // Menutup koneksi
-mysqli_close($conn_feedback);
+mysqli_close($conn);
 ?>
