@@ -5,19 +5,46 @@ require 'koneksi_web3donate.php';
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-// Membuat query SQL untuk mencocokkan username dan password
-$query_sql = "SELECT * FROM admin 
-            WHERE username = '$username' AND password = '$password'";
+// Hashing password untuk keamanan (disarankan)
+$hashed_password = $password; // Sesuaikan dengan hashing yang Anda gunakan saat menyimpan password
 
-// Menjalankan query SQL
-$result = mysqli_query($conn, $query_sql); // Perbaiki variabel menjadi $conn_admin
+// Membuat query SQL menggunakan prepared statements
+$query_sql = "SELECT * FROM users WHERE username = ? AND role = 'admin'";
+
+// Menyiapkan statement
+$stmt = mysqli_prepare($conn, $query_sql);
+if ($stmt === false) {
+    die('Query Error: ' . mysqli_error($conn));
+}
+
+// Mengikat parameter
+mysqli_stmt_bind_param($stmt, 's', $username);
+
+// Menjalankan statement
+mysqli_stmt_execute($stmt);
+
+// Mendapatkan hasil
+$result = mysqli_stmt_get_result($stmt);
 
 // Memeriksa apakah hasil query mengembalikan baris yang lebih dari 0
-if (mysqli_num_rows($result) > 0) {
-    // Jika berhasil, redirect ke halaman dashboard
-    header("Location: tb_donate.php");
+if ($row = mysqli_fetch_assoc($result)) {
+    // Verifikasi password
+    if ($row['password'] === $hashed_password) { // Sesuaikan dengan cara Anda menyimpan password
+        // Jika berhasil, redirect ke halaman dashboard
+        header("Location: tb_donate.php");
+        exit();
+    } else {
+        // Jika password tidak cocok, redirect ke halaman error
+        header("Location: wrongpsadmin.html");
+        exit();
+    }
 } else {
-    // Jika gagal, redirect ke halaman error
+    // Jika username tidak ditemukan atau bukan admin, redirect ke halaman error
     header("Location: wrongpsadmin.html");
-    exit(); // Hentikan eksekusi script
+    exit();
 }
+
+// Menutup statement dan koneksi
+mysqli_stmt_close($stmt);
+mysqli_close($conn);
+?>
