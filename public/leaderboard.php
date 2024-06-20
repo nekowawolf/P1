@@ -1,27 +1,3 @@
-<?php
-require 'fetch_donate.php';
-require 'fetch_crypto.php';
-
-
-// Memeriksa apakah donate_id ada di query string
-if (!isset($_GET['donate_id'])) {
-  echo "Donation ID not specified.";
-  exit();
-}
-
-$donate_id = $_GET['donate_id'];
-$donation = null;
-foreach ($donate_data as $donate) {
-  if ($donate['id'] == $donate_id) {
-    $donation = $donate;
-    break;
-  }
-}
-
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,13 +8,6 @@ foreach ($donate_data as $donate) {
   <link rel="shortcut icon" href="img/logo.png" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
-  <style>
-    .w-47ch {
-      max-width: calc(1ch * 47);
-      /* Set the maximum width to 47 characters */
-    }
-  </style>
 </head>
 
 <body>
@@ -71,7 +40,7 @@ foreach ($donate_data as $donate) {
           </svg>
         </li>
         <li>
-          <a class="text-sm text-gray-400 hover:text-gray-500"  href="leaderboard.php" >Leaderboard</a>
+          <a class="text-sm text-gray-400 hover:text-gray-500" href="leaderboard.php" >Leaderboard</a>
         </li>
         <li class="text-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill"
@@ -110,11 +79,11 @@ foreach ($donate_data as $donate) {
           </div>
           <ul class="py-2 text-sm text-black-700 dark:text-black-200" aria-labelledby="avatarButton">
             <li>
-              <a href="h_donate.php" class="block px-4 py-2  hover:bg-blue-500 ">Donate
+              <a href="h_donate.php" class="block px-4 py-2  dark:hover:bg-blue-600 ">Donation
                 History</a>
             </li>
             <li>
-              <a href="h_feedback.php" class="block px-4 py-2  hover:bg-blue-500 ">Feedback
+              <a href="h_feedback.php" class="block px-4 py-2  dark:hover:bg-blue-600 ">Feedback
                 History</a>
             </li>
           </ul>
@@ -212,69 +181,30 @@ foreach ($donate_data as $donate) {
   </script>
 
 
-  <div class="max-w-md mx-auto">
-    <h1 class="text-3xl font-bold mb-4 text-center mt-10">Payment</h1>
-    <?php if ($donation): ?>
-      <div class="mb-6 p-4 bg-white shadow-md rounded">
-        <div class="flex justify-center mb-4">
-          <img src="<?php echo htmlspecialchars($donation['image_url']); ?>" alt="Donation Image"
-            class="w-full h-64 object-cover rounded">
-        </div>
-        <h2 class="text-2xl font-bold mb-2 text-center"><?php echo htmlspecialchars($donation['name']); ?></h2>
-        <p class="text-gray-700 mb-4 text-center"><?php echo htmlspecialchars($donation['description']); ?></p>
-
-        <form action="process_payment.php" method="post">
-          <input type="hidden" name="donate_id" value="<?php echo htmlspecialchars($donation['id']); ?>">
-          <input type="hidden" name="user_email" value="<?php echo htmlspecialchars($user_email); ?>">
-
-          <div class="mb-4">
-            <label for="crypto" class="block text-gray-700 font-bold">Select Payment Method:</label>
-            <select id="crypto" name="crypto" class="mt-1 p-2 w-full border rounded" onchange="showAddress()" required>
-              <option value="">Select a crypto method</option>
-              <?php foreach ($crypto_data as $crypto): ?>
-                <option value="<?php echo htmlspecialchars($crypto['id']); ?>"
-                  data-address="<?php echo htmlspecialchars($crypto['address']); ?>">
-                  <?php echo htmlspecialchars($crypto['name']); ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-
-          <div id="crypto-address" class="w-47ch mb-4 text-gray-700 font-bold break-words"></div>
-
-          <div class="mb-4">
-            <label for="amount" class="block text-gray-700 font-bold">Amount:</label>
-            <input type="number" id="amount" name="amount" class="mt-1 p-2 w-full border rounded" required min="0.00001"
-              step="0.00001">
-          </div>
 
 
-          <div class="mb-4">
-            <label for="tx" class="block text-gray-700 font-bold">Transaction Proof (TX):</label>
-            <input type="text" id="tx" name="tx" class="mt-1 p-2 w-full border rounded" required>
-          </div>
 
-          <div class="mb-4">
-            <label for="message" class="block text-gray-700 font-bold">Message:</label>
-            <textarea id="message" name="message" class="mt-1 p-2 w-full border rounded"></textarea>
-          </div>
 
-          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded w-full">Pay Now</button>
-        </form>
-      </div>
-    <?php else: ?>
-      <p class="text-center text-red-500">Donation not found.</p>
-    <?php endif; ?>
-  </div>
+  <div class="flex-1 p-10">
+    <h1 class="text-3xl font-bold mb-10 text-center">Leaderboard</h1>
+    <!-- Content goes here -->
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
+        <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
+          <tr>
+            <th scope="col" class="px-6 py-3 border">Email</th>
+            <th scope="col" class="px-6 py-3 border">NAME</th>
+            <th scope="col" class="px-6 py-3 border">Total Donation</th>
+          </tr>
+        </thead>
+       
 
-  <script>
-    function showAddress() {
-      var cryptoSelect = document.getElementById('crypto');
-      var selectedCrypto = cryptoSelect.options[cryptoSelect.selectedIndex];
-      var address = selectedCrypto.getAttribute('data-address');
-      document.getElementById('crypto-address').innerText = 'Address: ' + address;
-    }
-  </script>
+
+
+
+
+
+
 
 </body>
 

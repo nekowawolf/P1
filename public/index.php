@@ -40,8 +40,7 @@
           </svg>
         </li>
         <li>
-          <a class="text-sm text-gray-400 hover:text-gray-500" href="https://app.uniswap.org/swap"
-            target="_blank">Swap</a>
+          <a class="text-sm text-gray-400 hover:text-gray-500"  href="leaderboard.php" >Leaderboard</a>
         </li>
         <li class="text-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill"
@@ -103,7 +102,7 @@
       <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
         <div class="flex items-center mb-8">
           <a class="mr-auto text-3xl font-bold leading-none" href="#">
-            <img src="img/logo.png" alt="" class="w-80 h-80" />
+            <img src="img/logo.png" alt="" class="w-30 h-30" />
           </a>
           <button class="navbar-close">
             <svg class="h-6 w-6 text-gray-400 cursor-pointer hover:text-gray-500" xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +119,7 @@
             </li>
             <li class="mb-1">
               <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
-                href="https://app.uniswap.org/swap" target="_blank">Swap</a>
+                href="leaderboard.php" >Leaderboard</a>
             </li>
             <li class="mb-1">
               <a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded"
