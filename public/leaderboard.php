@@ -180,30 +180,37 @@
     });
   </script>
 
-
-
-
-
-
-  <div class="flex-1 p-10">
+<div class="flex-1 p-10">
     <h1 class="text-3xl font-bold mb-10 text-center">Leaderboard</h1>
     <!-- Content goes here -->
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
       <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
         <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
           <tr>
+            <th scope="col" class="px-6 py-3 border">NO</th>
             <th scope="col" class="px-6 py-3 border">Email</th>
-            <th scope="col" class="px-6 py-3 border">NAME</th>
             <th scope="col" class="px-6 py-3 border">Total Donation</th>
           </tr>
         </thead>
-       
+        <tbody>
+          <?php
+          // Mengambil data dari fetch_leaderboard.php
+          $leaderboard_data = include 'fetch_leaderboard.php';
 
-
-
-
-
-
+          // Menampilkan data dalam tabel
+          $counter = 1;
+          foreach ($leaderboard_data as $row) {
+          ?>
+            <tr class="text-center border">
+              <td class="border px-4 py-2"><?php echo $counter++; ?></td>
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['email']); ?></td>
+              <td class="border px-4 py-2"><?php echo htmlspecialchars($row['donation_count']); ?></td>
+            </tr>
+          <?php } ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
 
 </body>
