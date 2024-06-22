@@ -63,7 +63,7 @@
                 <input type="hidden" id="end_date" name="end_date">
             </form>
             <form id="date_form" action="" method="get">
-                <input type="date" id="month_selected_date" name="selected_month" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_month'] ?? date('Y-m-d')); ?>">
+                <input type="month" id="month_selected_date" name="selected_month" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_month'] ?? date('Y-m-d')); ?>">
                 <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded ml-2" onclick="setMonthRange()">Select Month</button>
                 <input type="hidden" id="start_date" name="start_date">
                 <input type="hidden" id="end_date" name="end_date">
