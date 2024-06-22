@@ -44,7 +44,7 @@
                     <tbody>
                         <?php
                         // Menghubungkan ke database dan mengambil data pembayaran
-                        $payment_data = require 'fetch_payment.php';
+                        $payment_data = require 'fetch_payment_user.php';
 
                         foreach ($payment_data as $row):
                             $form_id = "paymentForm" . htmlspecialchars($row['id']);

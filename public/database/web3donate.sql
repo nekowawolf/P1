@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2024 at 05:50 PM
+-- Generation Time: Jun 22, 2024 at 11:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -101,6 +101,43 @@ INSERT INTO `feedback` (`id`, `email`, `subject`, `message`, `created_at`) VALUE
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `leaderboard`
+--
+
+CREATE TABLE `leaderboard` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `donation_count` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `leaderboard`
+--
+
+INSERT INTO `leaderboard` (`id`, `email`, `donation_count`) VALUES
+(1, 'rrwwrr@gmail.com', 4),
+(2, 'vitalik@gmail.com', 3),
+(3, 'anatoly@gmail.com', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `id` int(11) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `Amount` decimal(10,2) NOT NULL,
+  `transaction_proof` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
+  `action` varchar(20) DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -120,7 +157,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `role`) VALUES
 (13, 'rrwwrr', 'rrwwrr@gmail.com', '111', '2024-05-15 03:48:04', 'user'),
 (19, 'vitalik', 'vitalik@gmail.com', '444', '2024-05-17 03:46:00', 'user'),
-(36, 'admin', 'web3@donate.com', 'admin', '2024-06-08 15:33:07', 'admin');
+(36, 'admin', 'web3@donate.com', 'admin', '2024-06-08 15:33:07', 'admin'),
+(38, 'anatoly', 'anatoly@gmail.com', '222', '2024-06-21 10:47:13', 'user');
 
 --
 -- Indexes for dumped tables
@@ -142,6 +180,19 @@ ALTER TABLE `donate`
 -- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `leaderboard`
+--
+ALTER TABLE `leaderboard`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -175,10 +226,22 @@ ALTER TABLE `feedback`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
+-- AUTO_INCREMENT for table `leaderboard`
+--
+ALTER TABLE `leaderboard`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
