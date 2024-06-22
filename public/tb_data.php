@@ -1,19 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web3donate | Admin</title>
-    <link rel="shortcut icon" href="img/logo.png" />
-    <link rel="stylesheet" href="css/style.css" />
-</head>
+    <link rel="shortcut icon" href="img/logo.png">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        function setMonthRange() {
+            const dateInput = document.getElementById('month_selected_date');
+            const selectedDate = new Date(dateInput.value);
 
-<body class="flex h-screen"> <!-- Add class attribute to body -->
+            const startOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1);
+            const endOfMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0);
+
+            const startDate = startOfMonth.toISOString().split('T')[0];
+            const endDate = endOfMonth.toISOString().split('T')[0];
+
+            document.getElementById('start_date').value = startDate;
+            document.getElementById('end_date').value = endDate;
+
+            document.getElementById('date_form').submit();
+        }
+
+        function setDateRange() {
+            const dateInput = document.getElementById('date_selected_date');
+            const selectedDate = dateInput.value;
+
+            document.getElementById('start_date').value = selectedDate;
+            document.getElementById('end_date').value = selectedDate;
+
+            document.getElementById('date_form').submit();
+        }
+    </script>
+</head>
+<body class="flex h-screen">
 
     <!-- Sidebar -->
     <div class="w-64 bg-blue-900 text-white p-4">
-        <img src="img/logo.png" class="w-40 h-40 mx-auto" alt="">
+        <img src="img/logo.png" class="w-40 h-40 mx-auto" alt="Logo">
         <h2 class="text-2xl font-semibold mb-4 text-center">Web3donate Dashboard</h2>
         <nav>
             <a href="tb_donate.php" class="block py-2.5 px-4 rounded hover:bg-blue-700">Donate</a>
@@ -28,16 +53,25 @@
     <!-- Main Content -->
     <div class="flex-1 p-10">
         <h1 class="text-3xl font-bold mb-10">Data Report</h1>
-        <!-- Tambahkan form untuk memilih tanggal -->
+        
+        <!-- Form untuk memilih tanggal -->
         <div class="flex justify-end mb-4">
-            <form action="" method="get">
-                <input type="date" name="selected_date" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_date'] ?? date('Y-m-d')); ?>">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded ml-2">Select Date</button>
+            <form id="date_form" action="" method="get">
+                <input type="date" id="date_selected_date" name="selected_date" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_date'] ?? date('Y-m-d')); ?>">
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded ml-2 mr-10" onclick="setDateRange()">Select Date</button>
+                <input type="hidden" id="start_date" name="start_date">
+                <input type="hidden" id="end_date" name="end_date">
+            </form>
+            <form id="date_form" action="" method="get">
+                <input type="date" id="month_selected_date" name="selected_month" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_month'] ?? date('Y-m-d')); ?>">
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded ml-2" onclick="setMonthRange()">Select Month</button>
+                <input type="hidden" id="start_date" name="start_date">
+                <input type="hidden" id="end_date" name="end_date">
             </form>
         </div>
-
+        <!-- Tabel Data Report -->
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full min-w-max text-sm text-left rtl:text-right text-black-500 border">
+            <table class="w-full min-w-max text-sm text-left text-black-500 border">
                 <thead class="text-center text-xs text-black-700 uppercase bg-gray-50 border">
                     <tr>
                         <th scope="col" class="px-6 py-3 border">Email</th>
@@ -50,33 +84,34 @@
                 </thead>
                 <tbody>
                     <?php
-                    // Menghubungkan ke database dan mengambil data pembayaran
                     require 'fetch_payment.php';
 
-                    // Ambil tanggal yang dipilih, default ke tanggal hari ini jika tidak ada yang dipilih
-                    $selected_date = isset($_GET['selected_date']) ? $_GET['selected_date'] : date('Y-m-d');
+                    $start_date = isset($_GET['start_date']) ? $_GET['start_date'] : null;
+                    $end_date = isset($_GET['end_date']) ? $_GET['end_date'] : null;
 
-                    foreach ($payment_data as $row):
-                        // Tampilkan hanya data yang sesuai dengan tanggal yang dipilih
+                    foreach ($payment_data as $row) {
                         $row_date = date('Y-m-d', strtotime($row['created_at']));
-                        if ($selected_date != $row_date) {
-                            continue;
+                        if ($start_date && $end_date) {
+                            if ($row_date < $start_date || $row_date > $end_date) {
+                                continue;
+                            }
                         }
+                        ?>
+                        <tr class="text-center border">
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['user_email']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['donate_name']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['Amount']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['crypto_name']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
+                            <td class="border px-4 py-2"><?php echo htmlspecialchars($row['STATUS']); ?></td>
+                        </tr>
+                        <?php 
+                    }
                     ?>
-                    <tr class="text-center border">
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['user_email']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['donate_name']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['Amount']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['crypto_name']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['message']); ?></td>
-                        <td class="border px-4 py-2"><?php echo htmlspecialchars($row['STATUS']); ?></td>
-                    </tr>
-                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
 
 </body>
-
 </html>

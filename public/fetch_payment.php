@@ -1,14 +1,15 @@
 <?php
 // Menghubungkan ke database
-require 'koneksi_payment.php'; // Pastikan Anda memiliki koneksi ke database yang tepat
+require 'koneksi_payment.php';
 
 // Mengambil data dari database
 $query_sql = "SELECT * FROM payments";
 
-// Jika tanggal dipilih, tambahkan kondisi WHERE untuk memfilter data berdasarkan tanggal
-if (isset($_GET['selected_date']) && $_GET['selected_date'] != '') {
-    $selected_date = $_GET['selected_date'];
-    $query_sql .= " WHERE DATE(created_at) = '$selected_date'";
+$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : null;
+$end_date = isset($_GET['end_date']) ? $_GET['end_date'] : null;
+
+if ($start_date && $end_date) {
+    $query_sql .= " WHERE DATE(created_at) BETWEEN '$start_date' AND '$end_date'";
 }
 
 $result = mysqli_query($conn_payment, $query_sql);
