@@ -8,6 +8,27 @@
   <link rel="shortcut icon" href="img/logo.png" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js"></script>
+  <style>
+  .circle {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      color: black;
+      font-weight: bold; 
+    }
+    .gold {
+      background-color: gold;
+    }
+    .silver {
+      background-color: silver;
+    }
+    .bronze {
+      background-color: #cd7f32; 
+    }
+  </style>
 </head>
 
 <body>
@@ -187,7 +208,7 @@
       <table class="w-full text-sm text-left rtl:text-right text-black-500 border">
         <thead class=" text-center text-xs text-black-700 uppercase bg-gray-50 border">
           <tr>
-            <th scope="col" class="px-6 py-3 border">NO</th>
+            <th scope="col" class="px-6 py-3 border">Rank</th>
             <th scope="col" class="px-6 py-3 border">Email</th>
             <th scope="col" class="px-6 py-3 border">Total Donation</th>
           </tr>
@@ -200,19 +221,32 @@
           // Menampilkan data dalam tabel
           $counter = 1;
           foreach ($leaderboard_data as $row) {
+            // Tentukan kelas CSS untuk ranking 1, 2, dan 3
+            $rankClass = '';
+            if ($counter == 1) {
+              $rankClass = 'gold';
+            } elseif ($counter == 2) {
+              $rankClass = 'silver';
+            } elseif ($counter == 3) {
+              $rankClass = 'bronze';
+            }
           ?>
             <tr class="text-center border">
-              <td class="border px-4 py-2"><?php echo $counter++; ?></td>
+              <td class="border px-4 py-2">
+                <?php if ($counter <= 3) { ?>
+                  <span class="circle <?php echo $rankClass; ?>"><?php echo $counter; ?></span>
+                <?php } else { ?>
+                  <?php echo $counter; ?>
+                <?php } ?>
+              </td>
               <td class="border px-4 py-2"><?php echo htmlspecialchars($row['email']); ?></td>
               <td class="border px-4 py-2"><?php echo htmlspecialchars($row['donation_count']); ?></td>
             </tr>
-          <?php } ?>
+          <?php $counter++; } ?>
         </tbody>
       </table>
     </div>
   </div>
-
-
 </body>
 
 </html>
