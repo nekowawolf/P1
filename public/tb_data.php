@@ -7,18 +7,17 @@
     <link rel="shortcut icon" href="img/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-    .chart-container {
-        width: 70%;  /* Tentukan lebar relatif dari container chart */
-        margin: 0 auto;  /* Center alignment */
-    }
-    #cryptoChart {
-        width: 300%;  /* Sesuaikan lebar dengan container */
-        height: 400px;  /* Tinggi chart sesuai keinginan */
-    }
-</style>
+        .chart-container {
+            width: 70%;
+            margin: 0 auto;
+        }
+        #cryptoChart {
+            width: 100% !important;
+            height: 400px;
+        }
+    </style>
 </head>
 <body class="h-screen flex">
-
     <!-- Sidebar -->
     <div class="fixed top-0 left-0 w-64 bg-blue-900 text-white h-full p-4">
         <img src="img/logo.png" class="w-40 h-40 mx-auto" alt="Logo">
@@ -36,20 +35,31 @@
     <!-- Main Content -->
     <div class="flex-1 ml-64 h-full overflow-y-auto p-10">
         <h1 class="text-3xl font-bold mb-10">Data Report</h1>
-        
+
         <!-- Form untuk memilih tanggal -->
         <div class="flex justify-end mb-4 space-x-2">
-            <form id="date_form" action="" method="get" class="flex space-x-2">
+            <!-- Form untuk memilih tanggal -->
+            <form id="date_form_date" action="" method="get" class="flex space-x-2">
                 <input type="date" id="date_selected_date" name="selected_date" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_date'] ?? date('Y-m-d')); ?>">
                 <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="setDateRange()">Select Date</button>
-                <input type="hidden" id="start_date" name="start_date">
-                <input type="hidden" id="end_date" name="end_date">
+                <input type="hidden" id="start_date_date" name="start_date">
+                <input type="hidden" id="end_date_date" name="end_date">
             </form>
-            <form id="date_form" action="" method="get" class="flex space-x-2">
-                <input type="month" id="month_selected_date" name="selected_month" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_month'] ?? date('Y-m-d')); ?>">
+
+            <!-- Form untuk memilih minggu -->
+            <form id="week_form" action="" method="get" class="flex space-x-2">
+                <input type="week" id="week_selected_date" name="selected_week" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_week'] ?? date('Y-\WW')); ?>">
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="setWeekRange()">Select Week</button>
+                <input type="hidden" id="start_date_week" name="start_date">
+                <input type="hidden" id="end_date_week" name="end_date">
+            </form>
+
+            <!-- Form untuk memilih bulan -->
+            <form id="month_form" action="" method="get" class="flex space-x-2">
+                <input type="month" id="month_selected_date" name="selected_month" class="border p-2 rounded" value="<?php echo htmlspecialchars($_GET['selected_month'] ?? date('Y-m')); ?>">
                 <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded" onclick="setMonthRange()">Select Month</button>
-                <input type="hidden" id="start_date" name="start_date">
-                <input type="hidden" id="end_date" name="end_date">
+                <input type="hidden" id="start_date_month" name="start_date">
+                <input type="hidden" id="end_date_month" name="end_date">
             </form>
         </div>
 
@@ -98,12 +108,45 @@
 
         <h1 class="text-3xl mt-12 font-bold mb-10">Crypto Usage</h1>
         <div class="chart-container mt-10">
-            <canvas id="cryptoChart" class="chart"></canvas>
+            <canvas id="cryptoChart"></canvas>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        function setDateRange() {
+            const dateInput = document.getElementById('date_selected_date');
+            const selectedDate = dateInput.value;
+
+            document.getElementById('start_date_date').value = selectedDate;
+            document.getElementById('end_date_date').value = selectedDate;
+
+            document.getElementById('date_form_date').submit();
+        }
+
+        function setWeekRange() {
+            const weekInput = document.getElementById('week_selected_date');
+            const selectedWeek = weekInput.value;
+            const [year, week] = selectedWeek.split('-W');
+
+            // Cari tanggal awal minggu
+            const date = new Date(year, 0, 1 + (week - 1) * 7);
+            const dayOfWeek = date.getDay();
+            const startDate = new Date(date.setDate(date.getDate() - dayOfWeek + (dayOfWeek == 0 ? -6 : 1))); // Sesuaikan hari pertama minggu (Senin)
+
+            // Tentukan tanggal akhir minggu (Minggu)
+            const endDate = new Date(startDate);
+            endDate.setDate(startDate.getDate() + 6);
+
+            const startDateString = startDate.toISOString().split('T')[0];
+            const endDateString = endDate.toISOString().split('T')[0];
+
+            document.getElementById('start_date_week').value = startDateString;
+            document.getElementById('end_date_week').value = endDateString;
+
+            document.getElementById('week_form').submit();
+        }
+
         function setMonthRange() {
             const dateInput = document.getElementById('month_selected_date');
             const selectedDate = new Date(dateInput.value);
@@ -114,83 +157,69 @@
             const startDate = startOfMonth.toISOString().split('T')[0];
             const endDate = endOfMonth.toISOString().split('T')[0];
 
-            document.getElementById('start_date').value = startDate;
-            document.getElementById('end_date').value = endDate;
+            document.getElementById('start_date_month').value = startDate;
+            document.getElementById('end_date_month').value = endDate;
 
-            document.getElementById('date_form').submit();
+            document.getElementById('month_form').submit();
         }
 
-        function setDateRange() {
-            const dateInput = document.getElementById('date_selected_date');
-            const selectedDate = dateInput.value;
-
-            document.getElementById('start_date').value = selectedDate;
-            document.getElementById('end_date').value = selectedDate;
-
-            document.getElementById('date_form').submit();
-        }
-
-        // Fungsi untuk memuat data dan membuat chart
         function loadCryptoChart() {
-    fetch('fetch_crypto_usage.php')
-        .then(response => response.json())
-        .then(data => {
-            const cryptoNames = data.map(item => item.crypto_name);
-            const usageCounts = data.map(item => item.usage_count);
+            fetch('fetch_crypto_usage.php')
+                .then(response => response.json())
+                .then(data => {
+                    const cryptoNames = data.map(item => item.crypto_name);
+                    const usageCounts = data.map(item => item.usage_count);
 
-            const ctx = document.getElementById('cryptoChart').getContext('2d');
-            const cryptoChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: cryptoNames,
-                    datasets: [{
-                        label: 'Usage Count',
-                        data: usageCounts,
-                        backgroundColor: [
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(231, 233, 237, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(231, 233, 237, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,  // Memungkinkan penyesuaian rasio aspek
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            labels: {
-                                font: {
-                                    size: 10  // Ukuran font lebih kecil
+                    const ctx = document.getElementById('cryptoChart').getContext('2d');
+                    const cryptoChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: cryptoNames,
+                            datasets: [{
+                                label: 'Usage Count',
+                                data: usageCounts,
+                                backgroundColor: [
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                    'rgba(255, 206, 86, 0.2)',
+                                    'rgba(231, 233, 237, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)'
+                                ],
+                                borderColor: [
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(231, 233, 237, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ],
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        font: {
+                                            size: 10
+                                        }
+                                    }
                                 }
                             }
                         }
-                    }
-                }
-            });
-        });
-}
+                    });
+                });
+        }
 
-
-        // Muat chart setelah halaman selesai di-load
         window.onload = loadCryptoChart;
     </script>
-
 </body>
 </html>
