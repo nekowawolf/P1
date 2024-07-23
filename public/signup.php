@@ -11,7 +11,7 @@ $result = mysqli_query($conn, $check_sql);
 
 if (mysqli_num_rows($result) > 0) {
     // Jika ada duplikasi, arahkan kembali ke signup.html dengan pesan error
-    header("Location: signup.html?error=1");
+    header("Location: signup.html?error=duplicate");
 } else {
     // Jika tidak ada duplikasi, lakukan pendaftaran
     $query_sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";

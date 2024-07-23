@@ -13,26 +13,24 @@
         <div class="w-full lg:w-1/2 flex flex-col items-center justify-center p-12 bg-no-repeat bg-cover bg-center" style="background-image: url('img/logo.png');">
         </div>
         <div class="w-full lg:w-1/2 py-16 px-12">
-          <h2 class="text-3xl font-bold mb-4 text-white ">Sign Up</h2>
+          <h2 class="text-3xl font-bold mb-4 text-white">Sign Up</h2>
           <p class="mb-4 text-white">
             Create your account. It’s free and only take a minute
           </p>
-          <form action="signup.php" method="post">
+          <form id="signupForm" action="signup.php" method="post">
             <div class="mt-5">
-                <input type="text" name="username" placeholder="Username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <input type="text" id="username" name="username" placeholder="Username" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="^[a-zA-Z0-9]{10,}$" title="At least 10 characters long, only letters and numbers" required>
             </div>
             <div class="mt-5">
                 <input type="email" name="email" placeholder="Email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
             </div>
             <div class="mt-5">
-                <input type="password" name="password" placeholder="Password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                <input type="password" id="password" name="password" placeholder="Password" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="At least 8 characters long, with uppercase, lowercase, number, and special character" required>
             </div>
-            <a href="signin.html">
             <div class="mt-5">
                 <button type="submit" class="w-full bg-blue-500 py-3 text-center text-white">Sign Up</button>
             </div>
-        </form>
-        
+          </form>
         </div>
       </div>
     </div>
@@ -40,7 +38,9 @@
       // Periksa parameter URL untuk pesan error
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('error')) {
-        alert('Email or Username already registered');
+        if (urlParams.get('error') === 'duplicate') {
+          alert('Email or Username already registered');
+        }
       }
     </script>
   </body>
